@@ -10,7 +10,7 @@ const config = {
   tagline: "Clinic are cool",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "pingcap", // Usually your GitHub org/user name.
