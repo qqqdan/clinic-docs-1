@@ -25,6 +25,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl: "https://github.com/shhdgit/clinic-docs",
+          breadcrumbs: false,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.scss"),
