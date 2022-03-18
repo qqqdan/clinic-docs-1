@@ -6,7 +6,7 @@ summary: 详细说明 TiDB Clinic 诊断服务在使用 TiUP 部署的 TiDB 集�
 
 # TiDB Clinic 数据采集说明
 
-本文提供了 TiDB Clinic 诊断服务（以下简称为 TiDB Clinic）在使用 TiUP 部署的 TiDB 集群和 DM 集群中能够采集的诊断数据类型，并列出了各个采集项对应的采集参数。当[执行 Clinic Diag 诊断工具（以下简称为 Diag）数据采集命令](/docs/getting-started/clinic-user-guide-for-tiup.md)时，你可以依据需要采集的数据类型，在命令中添加所需的采集参数。
+本文提供了 TiDB Clinic 诊断服务（以下简称为 TiDB Clinic）在使用 TiUP 部署的 TiDB 集群和 DM 集群中能够采集的诊断数据类型，并列出了各个采集项对应的采集参数。当[执行 Clinic Diag 诊断工具（以下简称为 Diag）数据采集命令](/docs/getting-started/clinic-user-guide-for-tiup)时，你可以依据需要采集的数据类型，在命令中添加所需的采集参数。
 
 通过 TiDB Clinic 在使用 TiUP 部署的集群中采集的数据**仅**用于诊断和分析集群问题。
 

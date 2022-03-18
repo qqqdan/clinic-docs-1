@@ -56,7 +56,7 @@ tiup update diag
 
 ### 第 1 步：确定需要采集的数据
 
-如需查看 Diag 支持采集的数据的详细列表，请参阅 [TiDB Clinic 数据采集说明](/docs/getting-started/clinic-data-instruction-for-tiup.md)。
+如需查看 Diag 支持采集的数据的详细列表，请参阅 [TiDB Clinic 数据采集说明](/docs/getting-started/clinic-data-instruction-for-tiup)。
 
 建议收集监控数据、配置信息等全量诊断数据，有助于提升后续诊断效率。具体方法，请参考 [采集 TiDB 集群的数据](采集-TiDB-集群的数据]。
 

@@ -27,11 +27,13 @@ const config = {
           editUrl: "https://github.com/shhdgit/clinic-docs",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve("./src/css/custom.scss"),
         },
       }),
     ],
   ],
+
+  plugins: ["docusaurus-plugin-sass"],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -48,7 +50,7 @@ const config = {
             type: "doc",
             docId: "index",
             position: "left",
-            label: "Clinic",
+            label: "Guide",
           },
           // {
           //   href: "https://github.com/facebook/docusaurus",
