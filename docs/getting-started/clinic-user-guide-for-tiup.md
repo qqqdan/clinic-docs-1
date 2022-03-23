@@ -83,10 +83,10 @@ tiup update diag
 
     除了指定采集时间，你还可以使用 Diag 指定更多参数。如需查看所有参数，请使用 `tiup diag collect -h` 命令。
 
-    > **注意：**
-    >
+    > :::tip 注意
     > - Diag 默认**不收集**系统变量数据 (`db_vars`)。如需收集该数据，你需要额外提供开启了系统变量可读权限的数据库用户名和密码。
     > - 如需收集包括系统变量在内的全量诊断数据，可以使用命令 `tiup diag collect <cluster-name> --include="system,monitor,log,config,db_vars"`。
+    > :::tip
 
     - `-l`：传输文件时的带宽限制，单位为 Kbit/s, 默认值为 `100000`（即 scp 的 `-l` 参数）。
     - `-N/--node`：支持只收集指定节点的数据，格式为 `ip:port`。
@@ -172,9 +172,9 @@ tiup update diag
  tiup diag upload ${filepath} -u=username -p='password'
  ```
 
-> **注意：**
->
+> :::tip 注意
 > 目前 TiDB Clinic 在 Beta 受邀测试使用阶段，请联系与你对接的 PingCAP 技术人员获取试用账号。
+> :::tip
 
 输出结果示例如下：
 
@@ -189,9 +189,9 @@ Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
 
 完成上传后，你需要将 `Download URL` 中的数据访问链接发给与你对接的 PingCAP 技术支持人员。
 
-> **注意：**
->
+> :::tip 注意
 > 目前，Clinic Server 的数据访问链接只对 PingCAP 技术支持人员开放，上传数据的外部用户暂时**无法**打开该链接。
+> :::tip
 
 #### 方式 2：打包后上传
 
@@ -218,9 +218,9 @@ Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
     tiup diag upload ${filepath} -u=username -p='password'
     ```
 
-    > **注意：**
-    >
+    > :::tip 注意
     > 目前 TiDB Clinic 在 Beta 受邀测试使用阶段，请联系与你对接的 PingCAP 技术人员获取试用账号。
+    > :::tip
 
     输出结果示例如下：
 
@@ -235,9 +235,9 @@ Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
 
 3. 完成上传后，将 `Download URL` 中的数据访问链接发给与你对接的 PingCAP 技术支持人员。
 
-    > **注意：**
-    >
+    > :::tip 注意
     > 目前 Clinic Server 的数据访问链接只对 PingCAP 技术支持人员开放，上传数据的外部用户暂时**无法**打开该链接。
+    > :::tip
 
 ## 本地快速检查集群状态
 
