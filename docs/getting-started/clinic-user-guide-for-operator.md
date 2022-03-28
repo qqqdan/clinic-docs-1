@@ -72,7 +72,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 - 离线部署：如果集群所在的网络不能访问互联网，可采用离线部署方式。
 
 <Tabs>
-  <TabItem value="连网快速部署" label="连网快速部署" default>
+<TabItem value="连网快速部署" label="连网快速部署" default>
 
   1. 通过如下 helm 命令部署 Clinic Diag，将从 Docker Hub 下载最新 Diag 镜像
 
@@ -158,85 +158,85 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       helm upgrade diag-collector pingcap/diag --namespace=tidb-admin -f ${HOME}/diag-collector/values-diag-collector.yaml
       ```
 
-  </TabItem>
-  <TabItem value="离线部署" label="离线部署">
+</TabItem>
+<TabItem value="离线部署" label="离线部署">
 
-    如果服务器没有外网，需要按照下面的步骤来离线安装 Clinic Diag：
+  如果服务器没有外网，需要按照下面的步骤来离线安装 Clinic Diag：
 
-    1. 下载 `Clinic diag` chart
+  1. 下载 `Clinic diag` chart
 
-        如果服务器上没有外网，就无法通过配置 Helm repo 来安装 Clinic diag 组件以及其他应用。这时，需要在有外网的机器上下载集群安装需用到的 chart 文件，再拷贝到服务器上。
+      如果服务器上没有外网，就无法通过配置 Helm repo 来安装 Clinic diag 组件以及其他应用。这时，需要在有外网的机器上下载集群安装需用到的 chart 文件，再拷贝到服务器上。
 
-        通过以下命令，下载 `Clinic diag` chart 文件：
+      通过以下命令，下载 `Clinic diag` chart 文件：
 
-        ```shell
-        wget http://charts.pingcap.org/diag-v0.7.0.tgz
-        ```
+      ```shell
+      wget http://charts.pingcap.org/diag-v0.7.0.tgz
+      ```
 
-        将 `diag-v0.7.0.tgz` 文件拷贝到服务器上并解压到当前目录：
+      将 `diag-v0.7.0.tgz` 文件拷贝到服务器上并解压到当前目录：
 
-        ```shell
-        tar zxvf diag-v0.7.0.tgz
-        ```
+      ```shell
+      tar zxvf diag-v0.7.0.tgz
+      ```
 
-    2. 下载 Clinic Diag 运行所需的 Docker 镜像
+  2. 下载 Clinic Diag 运行所需的 Docker 镜像
 
-        需要在有外网的机器上将 Clinic Diag 用到的 Docker 镜像下载下来并上传到服务器上，然后使用 `docker load` 将 Docker 镜像安装到服务器上。
+      需要在有外网的机器上将 Clinic Diag 用到的 Docker 镜像下载下来并上传到服务器上，然后使用 `docker load` 将 Docker 镜像安装到服务器上。
 
-        TiDB Operator 用到的 Docker 镜像有：
+      TiDB Operator 用到的 Docker 镜像有：
 
-        ```shell
-        pingcap/diag:v0.7.0
-        ```
+      ```shell
+      pingcap/diag:v0.7.0
+      ```
 
-        接下来通过下面的命令将镜像下载下来：
+      接下来通过下面的命令将镜像下载下来：
 
-        ```shell
-        docker pull pingcap/diag:v0.7.0
+      ```shell
+      docker pull pingcap/diag:v0.7.0
 
-        docker save -o diag-v0.7.0.tar pingcap/diag:v0.7.0
-        ```
+      docker save -o diag-v0.7.0.tar pingcap/diag:v0.7.0
+      ```
 
-        接下来将这些 Docker 镜像上传到服务器上，并执行 `docker load` 将这些 Docker 镜像安装到服务器上：
+      接下来将这些 Docker 镜像上传到服务器上，并执行 `docker load` 将这些 Docker 镜像安装到服务器上：
 
-        ```shell
-        docker load -i diag-v0.7.0.tar
-        ```
+      ```shell
+      docker load -i diag-v0.7.0.tar
+      ```
 
-    3. 配置 Clinic Diag
+  3. 配置 Clinic Diag
 
-        修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件设置你的 Clinic Token。
+      修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件设置你的 Clinic Token。
 
-        其他项目例如：`limits`、`requests` 和 `volume`，请根据需要进行修改。
+      其他项目例如：`limits`、`requests` 和 `volume`，请根据需要进行修改。
 
-        > :::info 注意
-        >
-        > - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
-        > - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
-        > :::info
+      > :::info 注意
+      >
+      > - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
+      > - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
+      > :::info
 
-    4. 安装 Clinic Diag
+  4. 安装 Clinic Diag
 
-        使用下面的命令安装 Clinic Diag：
+      使用下面的命令安装 Clinic Diag：
 
-        ```shell
-        helm install diag-collector ./diag --namespace=tidb-admin
-        ```
+      ```shell
+      helm install diag-collector ./diag --namespace=tidb-admin
+      ```
 
-        > :::info 注意
-        >
-        > namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic Diag。
-        > :::info
+      > :::info 注意
+      >
+      > namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic Diag。
+      > :::info
 
-    5. [可选操作]升级 Clinic Diag
+  5. [可选操作]升级 Clinic Diag
 
-        如果需要升级 Clinic Diag，请先修改 `./diag/values.yaml` 文件，然后执行下面的命令进行升级：
+      如果需要升级 Clinic Diag，请先修改 `./diag/values.yaml` 文件，然后执行下面的命令进行升级：
 
-        ```shell
-        helm upgrade diag-collector ./diag --namespace=tidb-admin
-        ```
+      ```shell
+      helm upgrade diag-collector ./diag --namespace=tidb-admin
+      ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ### 第 3 步：检查 Clinic Diag Pod 的运行状态：
