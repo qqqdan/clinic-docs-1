@@ -1,4 +1,5 @@
 ---
+sidebar_position: 2
 title: TiUP Diag 数据采集范围说明
 summary: 详细说明 PingCAP Clinic 诊断服务在使用 TiUP 部署的 TiDB 集群和 DM 集群中能够采集哪些诊断数据。
 ---
@@ -15,7 +16,7 @@ summary: 详细说明 PingCAP Clinic 诊断服务在使用 TiUP 部署的 TiDB �
 
 ### TiDB 集群信息
 
-| 诊断数据类型 | 输出文件 | PingCAP Clinic 采集参数 | 
+| 诊断数据类型 | 输出文件 | PingCAP Clinic 采集参数 |
 | :------ | :------ |:-------- |
 | 集群基础信息，包括集群 ID | `cluster.json` | 每次收集默认采集 |
 | 集群详细信息 | `meta.yaml` | 每次收集默认采集 |

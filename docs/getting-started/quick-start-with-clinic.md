@@ -1,8 +1,9 @@
 ---
+sidebar_position: 1
 title: PingCAP Clinic 快速上手
 summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并上传到 Clinic Server 进行诊断。
 ---
--
+
 # PingCAP Clinic 快速上手
 
 本文介绍如何快速使用 PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）进行诊断数据的收集、上传和分析。
@@ -39,14 +40,12 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 > - 文件大小不能超过 10GB。
 > :::tip
 
-## 采集并上传数据 
+## 采集并上传数据
 
 - 适用场景：远程定位集群问题，当集群出现问题，需要远程咨询 PingCAP 技术支持时，你可以先使用 Diag 采集诊断数据，然后将其数据上传到 Clinic Server，最后把数据链接提供给技术支持人员，协助远程定位集群问题。
 
 1. 安装 Diag 。
     如果你的中控机上已经安装了 TiUP，可以使用以下命令一键安装 Diag：
-
-    {{< copyable "shell-regular" >}}
 
     ```bash
     tiup install diag
@@ -54,15 +53,11 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 
     若已安装了 Diag，你可以通过以下命令，将本地的 Diag 一键升级至最新版本：
 
-    {{< copyable "shell-regular" >}}
-
     ```bash
     tiup update diag
     ```
 
     设置 Diag 的上传 Token
-
-    {{< copyable "shell-regular" >}}
 
     ```bash
     tiup diag config --token=${token-value}
@@ -71,8 +66,6 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 2. 运行 Diag 采集诊断数据。
 
     例如，如需采集从当前时间的 4 小时前到 2 小时前的诊断数据，可以运行以下命令：
-
-    {{< copyable "shell-regular" >}}
 
     ```bash
     tiup diag collect ${cluster-name} -f="-4h" -t="-2h"
@@ -86,15 +79,11 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 
     如果你的集群所在的网络可以访问互联网，你可以直接通过以下命令上传在上一步中收集的数据包文件夹：
 
-    {{< copyable "shell-regular" >}}
-
     ```bash
     tiup diag upload ${filepath}
     ```
 
     输出结果示例如下：
-
-    {{< copyable "shell-regular" >}}
 
     ```bash
     [root@Copy-of-VM-EE-CentOS76-v1 qiaodan]# tiup diag upload /home/qiaodan/diag-fNTnz5MGhr6
@@ -109,11 +98,11 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
     >
     > 如果你所在的集群无法访问互联网，需要通过先打包后上传的方式进行上传，相关说明可以参看[使用 TiDB Clinic](/clinic/clinic-user-guide-for-tiup.md)。
     > :::tip
-    
+
 ## 通过 Clinic Server 查看并分析诊断数据
 
 诊断数据上传后，你可以在 Clinic Server 上直接查看到以下诊断数据内容：
 - 集群名称
 - 集群拓扑信息
 - 诊断数据包中的日志内容
-- 基于诊断数据包中的 metrics 信息重建的 Grafana Dashboard 
+- 基于诊断数据包中的 metrics 信息重建的 Grafana Dashboard
