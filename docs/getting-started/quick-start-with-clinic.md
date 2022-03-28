@@ -3,7 +3,7 @@ sidebar_position: 1
 title: PingCAP Clinic 快速上手
 summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并上传到 Clinic Server 进行诊断。
 ---
--
+
 # PingCAP Clinic 快速上手
 
 本文介绍如何快速使用 PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）进行诊断数据的收集、上传和分析。
