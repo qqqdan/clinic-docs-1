@@ -3,6 +3,9 @@ title: 在 Operator 部署环境使用 Clinic Diag 诊断客户端
 summary: 详细介绍在使用 TiDB Operator 部署的集群上如何通过 Clinic Diag 诊断客户端进行数据采集和快速检查。
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Operator 环境的 Clinic 诊断服务操作手册
 
 对于使用 TiDB Operator 部署的集群，Clinic 诊断服务可以通过 Clinic Diag 诊断客户端与 Clinic Server 云服务对该集群进行数据采集和集群快速诊断。
@@ -31,7 +34,7 @@ summary: 详细介绍在使用 TiDB Operator 部署的集群上如何通过 Clin
 Clinic Diag 部署前，请确认以下软件需求：
 
 * Kubernetes v1.12 或者更高版本
-* [TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/tidb-operator-overview) 
+* [TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/tidb-operator-overview)
 * [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 * [RBAC](https://kubernetes.io/docs/admin/authorization/rbac) 启用（可选）
 * [Helm 3](https://helm.sh)
@@ -52,7 +55,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
 用户第一次登录成功后，需要创建组织。根据页面提示输入组织名称，即可创建。创建成功后进入组织页面，用户可以在组织界面上直接上传 Diag 客户端采集的诊断数据，也可以获取 Token 后通过 Diag 客户端的命令行或接口上传。
 
-#### 获取客户端上传 Token 
+#### 获取客户端上传 Token
 点击页面上的上传图标，选择“Get Access Token For Diag Tool” ，在弹出窗口中复制并保存 Token 信息。
 
 > *** 注意 ***
@@ -68,15 +71,10 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 - 连网普通部署：如果集群所在的网络能访问互联网，需要自定义 Diag Pod 的配置参数，推荐使用连网普通部署方式。
 - 离线部署：如果集群所在的网络不能访问互联网，可采用离线部署方式。
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 <Tabs>
   <TabItem value="连网快速部署" label="连网快速部署" default>
-   
-  1. 通过如下 helm 命令部署 Clinic Diag，将从 Docker Hub 下载最新 Diag 镜像
 
-  {{< copyable "shell-regular" >}}
+  1. 通过如下 helm 命令部署 Clinic Diag，将从 Docker Hub 下载最新 Diag 镜像
 
     ```shell
     # namespace： 和 TiDB Operator 处于同一 namespace 中
@@ -87,9 +85,7 @@ import TabItem from '@theme/TabItem';
 
     > :::info 注意
     > 如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
-    > 
-    >   {{< copyable "shell-regular" >}}
-    > 
+    >
     >   ```shell
     >   # namespace： 和 TiDB Operator 处于同一 namespace 中
     >   # diag.clinicToken: 请在 "https://clinic.pingcap.com" 中获取您的 Token
@@ -97,7 +93,7 @@ import TabItem from '@theme/TabItem';
     >       --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
     >       --set diag.clinicToken= ${clinic_token }
     >   ```
-    > :::info 
+    > :::info
 
   2. 部署后返回如下：
 
@@ -117,10 +113,8 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 <TabItem value="连网普通部署" label="连网普通部署">
-  
-  1. 获取你要部署的 `Clinic diag` chart 中的 `values-diag-collector.yaml` 文件：
 
-      {{< copyable "shell-regular" >}}
+  1. 获取你要部署的 `Clinic diag` chart 中的 `values-diag-collector.yaml` 文件：
 
       ```shell
       mkdir -p ${HOME}/diag-collector && \
@@ -139,14 +133,12 @@ import TabItem from '@theme/TabItem';
       其他项目例如：`limits`、`requests` 和 `volume`，请根据需要进行修改。
 
       > :::info 注意
-      > 
+      >
       > - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
       > - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
-      > :::info 
+      > :::info
 
   3. 部署 Clinic Diag
-
-      {{< copyable "shell-regular" >}}
 
       ```shell
       helm install diag-collector pingcap/diag --namespace=tidb-admin --version=${chart_version} -f ${HOME}/diag-collector/values-diag-collector.yaml && \
@@ -156,13 +148,11 @@ import TabItem from '@theme/TabItem';
       > :::info 注意
       >
       > - namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic diag。
-      > :::info 
+      > :::info
 
   4. [可选操作]升级 Clinic Diag
 
       如果需要升级 Clinic Diag，请先修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件，然后执行下面的命令进行升级：
-
-      {{< copyable "shell-regular" >}}
 
       ```shell
       helm upgrade diag-collector pingcap/diag --namespace=tidb-admin -f ${HOME}/diag-collector/values-diag-collector.yaml
@@ -170,6 +160,7 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
   <TabItem value="离线部署" label="离线部署">
+
     如果服务器没有外网，需要按照下面的步骤来离线安装 Clinic Diag：
 
     1. 下载 `Clinic diag` chart
@@ -178,15 +169,11 @@ import TabItem from '@theme/TabItem';
 
         通过以下命令，下载 `Clinic diag` chart 文件：
 
-        {{< copyable "shell-regular" >}}
-
         ```shell
         wget http://charts.pingcap.org/diag-v0.7.0.tgz
         ```
 
         将 `diag-v0.7.0.tgz` 文件拷贝到服务器上并解压到当前目录：
-
-        {{< copyable "shell-regular" >}}
 
         ```shell
         tar zxvf diag-v0.7.0.tgz
@@ -204,8 +191,6 @@ import TabItem from '@theme/TabItem';
 
         接下来通过下面的命令将镜像下载下来：
 
-        {{< copyable "shell-regular" >}}
-
         ```shell
         docker pull pingcap/diag:v0.7.0
 
@@ -213,8 +198,6 @@ import TabItem from '@theme/TabItem';
         ```
 
         接下来将这些 Docker 镜像上传到服务器上，并执行 `docker load` 将这些 Docker 镜像安装到服务器上：
-
-        {{< copyable "shell-regular" >}}
 
         ```shell
         docker load -i diag-v0.7.0.tar
@@ -227,16 +210,14 @@ import TabItem from '@theme/TabItem';
         其他项目例如：`limits`、`requests` 和 `volume`，请根据需要进行修改。
 
         > :::info 注意
-        > 
+        >
         > - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
         > - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
-        > :::info 
+        > :::info
 
     4. 安装 Clinic Diag
 
         使用下面的命令安装 Clinic Diag：
-
-        {{< copyable "shell-regular" >}}
 
         ```shell
         helm install diag-collector ./diag --namespace=tidb-admin
@@ -245,17 +226,16 @@ import TabItem from '@theme/TabItem';
         > :::info 注意
         >
         > namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic Diag。
-        > :::info 
+        > :::info
 
     5. [可选操作]升级 Clinic Diag
 
         如果需要升级 Clinic Diag，请先修改 `./diag/values.yaml` 文件，然后执行下面的命令进行升级：
 
-        {{< copyable "shell-regular" >}}
-
         ```shell
         helm upgrade diag-collector ./diag --namespace=tidb-admin
         ```
+
   </TabItem>
 </Tabs>
 
@@ -415,7 +395,7 @@ curl -s http://${host}:${port}/api/v1/collectors/${id}
 #### 3. 查看已采集的数据集信息
 
 完成采集任务后，可以通过 API 请求来获取数据集的采集时间和数据大小信息：
-    
+
 {{< copyable "shell-regular" >}}
 
 ```bash
@@ -552,26 +532,26 @@ There were **3** abnormal results.
 - RuleID: 100
 - Variation: TidbConfig.log.file.max-days
 - For more information, please visit: https://s.tidb.io/msmo6awg
-- Check Result: 
-  TidbConfig_172.20.21.213:4000   TidbConfig.log.file.max-days:0   warning  
+- Check Result:
+  TidbConfig_172.20.21.213:4000   TidbConfig.log.file.max-days:0   warning
 
 #### Rule Name: pdconfig-max-days
 - RuleID: 209
 - Variation: PdConfig.log.file.max-days
 - For more information, please visit: https://s.tidb.io/jkdqxudq
-- Check Result: 
-  PdConfig_172.20.22.100:2379   PdConfig.log.file.max-days:0   warning  
-  PdConfig_172.20.14.102:2379   PdConfig.log.file.max-days:0   warning  
-  PdConfig_172.20.15.222:2379   PdConfig.log.file.max-days:0   warning  
+- Check Result:
+  PdConfig_172.20.22.100:2379   PdConfig.log.file.max-days:0   warning
+  PdConfig_172.20.14.102:2379   PdConfig.log.file.max-days:0   warning
+  PdConfig_172.20.15.222:2379   PdConfig.log.file.max-days:0   warning
 
 #### Rule Name: pdconfig-max-backups
 - RuleID: 210
 - Variation: PdConfig.log.file.max-backups
 - For more information, please visit: https://s.tidb.io/brd9zy53
-- Check Result: 
-  PdConfig_172.20.22.100:2379   PdConfig.log.file.max-backups:0   warning  
-  PdConfig_172.20.14.102:2379   PdConfig.log.file.max-backups:0   warning  
-  PdConfig_172.20.15.222:2379   PdConfig.log.file.max-backups:0   warning  
+- Check Result:
+  PdConfig_172.20.22.100:2379   PdConfig.log.file.max-backups:0   warning
+  PdConfig_172.20.14.102:2379   PdConfig.log.file.max-backups:0   warning
+  PdConfig_172.20.15.222:2379   PdConfig.log.file.max-backups:0   warning
 
 Result report and record are saved at /diag-fPrz0RnDxRn/report-220208030210
 ```
