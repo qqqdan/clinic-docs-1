@@ -53,7 +53,7 @@ tiup diag config --token=${token-value}
 > :::tip 注意
 >
 > - Token 用于 Diag 客户端上传数据时进行用户认证，保证数据的安全隔离。Token 获取方法可以参考[PingCAP Clinic 快速上手](/quick-start-with-clinic.md)。
-> - 对于离线集群，你需要离线部署 Diag 诊断客户端。具体方法，请参照[离线部署 TiUP 组件：方式 2](/production-deployment-using-tiup.md#离线部署)。
+> - 对于离线集群，你需要离线部署 Diag 诊断客户端。具体方法，请参照[离线部署 TiUP 组件：方式 1](https://docs.pingcap.com/zh/tidb/v4.0/production-offline-deployment-using-tiup#%E6%96%B9%E5%BC%8F%E4%B8%80%E4%B8%8B%E8%BD%BD%E5%AE%98%E6%96%B9-tiup-%E7%A6%BB%E7%BA%BF%E7%BB%84%E4%BB%B6%E5%8C%85)。
 > - Diag 诊断客户端**仅**包含在 v6.0.0 及后续版本的 TiDB Server 离线镜像包中。
 > :::tip 
 
@@ -63,7 +63,7 @@ tiup diag config --token=${token-value}
 
 ### 第 1 步：确定需要采集的数据
 
-如需查看 Diag 支持采集的数据的详细列表，请参阅 [PingCAP Clinic 数据采集说明](/clinic/clinic-data-instruction-for-tiup.md)。
+如需查看 Diag 支持采集的数据的详细列表，请参阅 [PingCAP Clinic 数据采集说明](/clinic-data-instruction-for-tiup.md)。
 
 建议收集监控数据、配置信息等全量诊断数据，有助于提升后续诊断效率。具体方法，请参考 [采集 TiDB 集群的数据](采集-TiDB-集群的数据]。
 
@@ -203,7 +203,6 @@ tiup diag config --token=${token-value}
 {{< copyable "shell-regular" >}}
 
 ```bash
-[root@Copy-of-VM-EE-CentOS76-v1 qiaodan]# tiup diag upload /home/qiaodan/diag-fNTnz5MGhr6
 Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag upload /home/qiaodan/diag-fNTnz5MGhr6
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>>>>
 Completed!
@@ -251,7 +250,6 @@ Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
     {{< copyable "shell-regular" >}}
 
     ```bash
-    [root@Copy-of-VM-EE-CentOS76-v1 qiaodan]# tiup diag upload /home/qiaodan/diag-fNTnz5MGhr6
     Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag upload /home/qiaodan/diag-fNTnz5MGhr6
     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>>>>
     Completed!
@@ -341,6 +339,6 @@ Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
 
     需要登录并有相应的数据访问权限，才可以打开返回的数据访问链接。请登录或请数据所有人添加权限后进行访问。
 
-3. 上传到 Clinic Server 的数据后会保存多久？
+3. 用户的 Clinic Token 未保存，能否找回？
 
-    在对应的技术支持 Case 关闭后，PingCAP 会在 90 天内对相关数据进行永久删除或匿名化处理。
+    Token 内容只在创建时显示一次，若未及时保存，则无法找回。你可以登录 Clinic Server 删除现有 Token， 创建新 Token。
