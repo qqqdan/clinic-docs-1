@@ -8,11 +8,11 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 
 本文介绍如何快速使用 PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）进行诊断数据的收集、上传和分析。
 
-> :::tip 注意
+> :::info 注意
 >
 > - 本指南中的数据采集和上传的方式仅适用于 TiUP 部署的集群。
 > - 通过 PingCAP Clinic 在 TiDB 集群中采集并上传到 Clinic Server 的数据**仅**用于诊断和分析集群问题。
-> :::tip
+> :::info
 
 ## 注册并登录 Clinic Server
 
@@ -25,20 +25,20 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 ### 获取客户端上传 Token （推荐方式）
 点击页面上的上传图标，选择“Get Access Token For Diag Tool” ，在弹出窗口中复制并保存 Token 信息。
 
-> :::tip 注意
+> :::info 注意
 >
 > - Token 用于 Diag 客户端上传数据时进行用户认证，保证数据上传到用户创建的组织下，保证数据的安全隔离。
 > - Token 内容只在创建时展示，如果用户丢失 Token 信息，可以删除老 Token，重新创建。
-> :::tip
+> :::info
 
 ### 网页直接上传诊断数据
 点击页面上的上传图标，选择“Diag Package (.diag) Upload” ，选择本地的 Diag 数据文件上传。
 
-> :::tip 注意
+> :::info 注意
 >
 > - 只支持上传客户端 Diag v0.7.0 及以上版本采集及使用 Package 命令打包后的文件。
 > - 文件大小不能超过 10GB。
-> :::tip
+> :::info
 
 ## 采集并上传数据
 
@@ -70,10 +70,10 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
     ```bash
     tiup diag collect ${cluster-name} -f="-4h" -t="-2h"
     ```
-    > :::tip 注意
+    > :::info 注意
     >
     > 更多数据采集参数的说明可以参看[使用 TiDB Clinic](/clinic/clinic-user-guide-for-tiup.md)。
-    > :::tip
+    > :::info
 
 3. 上传数据到 Clinic Server
 
@@ -94,10 +94,10 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 
     完成上传后，你可以打开 `Download URL` 中的数据访问链接进行数据查看，也可以将链接发给与你对接的 PingCAP 技术支持人员，后者协助远程定位集群问题。
 
-    > :::tip 注意
+    > :::info 注意
     >
     > 如果你所在的集群无法访问互联网，需要通过先打包后上传的方式进行上传，相关说明可以参看[使用 TiDB Clinic](/clinic/clinic-user-guide-for-tiup.md)。
-    > :::tip
+    > :::info
 
 ## 通过 Clinic Server 查看并分析诊断数据
 

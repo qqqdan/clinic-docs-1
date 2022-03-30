@@ -10,11 +10,11 @@ import TabItem from '@theme/TabItem';
 
 对于使用 TiDB Operator 部署的集群，Clinic 诊断服务可以通过 Clinic Diag 诊断客户端与 Clinic Server 云服务对该集群进行数据采集和集群快速诊断。
 
-> :::tip 注意
+> :::info 注意
 >
 > 本文档**仅**适用于使用 TiDB Operator 部署的集群。如需查看适用于使用 TiUP 部署的集群，请参阅 [TiUP 环境的 Clinic 操作手册](/clinic-user-guide-for-tiup.md)。
 > Clinic 诊断服务暂时**不支持**对 TiDB Ansible 部署的集群进行数据采集。
-> :::tip
+> :::info
 
 对于使用 TiDB Operator 部署的集群，Clinic Diag 需要部署为一个独立的 Pod。本文介绍如何使用 kubectl 命令创建并部署 Diag pod 后，通过 API 调用继续数据采集和快速检查。
 

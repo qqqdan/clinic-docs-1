@@ -39,11 +39,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        disableSwitch: true,
+      },
       navbar: {
         // hideOnScroll: true,
         logo: {
           alt: "Clinic Logo",
-          src: "img/logo.svg",
+          src: "img/logo.png",
           href: "/docs",
         },
         items: [

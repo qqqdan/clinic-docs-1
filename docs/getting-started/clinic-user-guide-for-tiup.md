@@ -10,10 +10,10 @@ summary: 详细介绍在使用 TiUP 部署的集群上如何通过 PingCAP Clini
 
 目前，PingCAP Clinic 诊断服务目前处于 Technical Preview 受邀测试使用阶段。
 
-> :::tip 注意
+> :::info 注意
 >
 > PingCAP Clinic 诊断服务暂时**不支持**对使用 TiDB Ansible 部署的集群进行数据采集。
-> :::tip
+> :::info
 
 ## 使用场景
 
@@ -46,12 +46,12 @@ tiup update diag
 tiup diag config --token=${token-value}
 ```
 
-> :::tip 注意
+> :::info 注意
 >
 > - Token 用于 Diag 客户端上传数据时进行用户认证，保证数据的安全隔离。Token 获取方法可以参考[PingCAP Clinic 快速上手](/quick-start-with-clinic.md)。
 > - 对于离线集群，你需要离线部署 Diag 诊断客户端。具体方法，请参照[离线部署 TiUP 组件：方式 1](https://docs.pingcap.com/zh/tidb/v4.0/production-offline-deployment-using-tiup#%E6%96%B9%E5%BC%8F%E4%B8%80%E4%B8%8B%E8%BD%BD%E5%AE%98%E6%96%B9-tiup-%E7%A6%BB%E7%BA%BF%E7%BB%84%E4%BB%B6%E5%8C%85)。
 > - Diag 诊断客户端**仅**包含在 v6.0.0 及后续版本的 TiDB Server 离线镜像包中。
-> :::tip
+> :::info
 
 ## 远程定位集群问题
 
@@ -90,12 +90,12 @@ tiup diag config --token=${token-value}
 
     除了指定采集时间，你还可以使用 Diag 指定更多参数。如需查看所有参数，请使用 `tiup diag collect -h` 命令。
 
-    > :::tip 注意
+    > :::info 注意
     >
     > - Diag 默认**不收集**系统变量数据 (`db_vars`)。如需收集该数据，你需要额外提供开启了系统变量可读权限的数据库用户名和密码。
     > - Diag 默认**不收集**性能数据 (`perf`)和 debug 数据 (`debug`)。
     > - 如需收集全量诊断数据，可以使用命令 `tiup diag collect <cluster-name> --include="system,monitor,log,config,db_vars,perf,debug"`。
-    > :::tip
+    > :::info
 
 
     运行 Diag 数据采集命令后，Diag 不会立即开始采集数据，而会在输出中提供预估数据量大小和数据存储路径，并询问你是否进行数据收集。例如：
@@ -177,10 +177,10 @@ tiup diag config --token=${token-value}
  tiup diag upload
  ```
 
-> :::tip 注意
+> :::info 注意
 >
 > 如果尚未配置 Token，会上传失败，并提示你设置 Token。Token 获取方法可以参考[PingCAP Clinic 快速上手](/quick-start-with-clinic.md)。
-> :::tip
+> :::info
 
 输出结果示例如下：
 
@@ -218,10 +218,10 @@ Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
     tiup diag upload ${filepath}
     ```
 
-    > :::tip 注意
+    > :::info 注意
     >
     > 如果尚未配置 Token，会上传失败，并提示你设置 Token 。Token 获取方法可以参考[PingCAP Clinic 快速上手](/quick-start-with-clinic.md)。
-    > :::tip
+    > :::info
 
     输出结果示例如下：
 
