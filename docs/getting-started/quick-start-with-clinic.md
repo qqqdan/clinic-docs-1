@@ -16,7 +16,7 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 
 ## 注册并登录 Clinic Server
 
-用户可以通过 TiDB 社区帐号登录 PingCAP Clinic 服务，进入[ Clinic 登录页面](https://clinic.pingcap.com/clinic/#/login)，选择 “Sign in with AskTUG” ，进入社区帐号登录界面。若您还没有 TiDB 社区帐号，可以在登录界面进行注册。
+用户可以通过 TiDB 社区帐号登录 PingCAP Clinic 服务，进入[ Clinic 登录页面](https://clinic.pingcap.com.cn/portal/#/login)，选择 “Sign in with AskTUG” ，进入社区帐号登录界面。若您还没有 TiDB 社区帐号，可以在登录界面进行注册。
 
 ## 创建组织并获取上传 Token
 
