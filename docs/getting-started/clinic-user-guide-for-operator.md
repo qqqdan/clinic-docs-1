@@ -49,7 +49,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
 #### 注册并登录 Clinic Server
 
-进入[Clinic 登录页面](https://clinic.pingcap.com/clinic/#/login)，选择 “Sign in with AskTUG”，可以通过 TiDB 社区帐号登录 PingCAP Clinic 服务。若你还没有 TiDB 社区帐号，可以在登录界面进行注册。
+进入[Clinic 登录页面](https://clinic.pingcap.com.cn/portal/#/login)，选择 “Sign in with AskTUG”，可以通过 TiDB 社区帐号登录 PingCAP Clinic 服务。若你还没有 TiDB 社区帐号，可以在登录界面进行注册。
 
 #### 创建组织
 
@@ -78,7 +78,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
     ```shell
     # namespace： 和 TiDB Operator 处于同一 namespace 中
-    # diag.clinicToken: 请在 "https://clinic.pingcap.com" 中登录并获取您的 Token。
+    # diag.clinicToken: 请在 "https://clinic.pingcap.com.cn" 中登录并获取您的 Token。
     helm install --namespace tidb-admin diag-collector pingcap/diag \
           --set diag.clinicToken=${clinic_token }
     ```
@@ -87,8 +87,6 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
     > 如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
     >
     >   ```shell
-    >   # namespace： 和 TiDB Operator 处于同一 namespace 中
-    >   # diag.clinicToken: 请在 "https://clinic.pingcap.com" 中获取您的 Token
     >   helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.0 \
     >       --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
     >       --set diag.clinicToken= ${clinic_token }
@@ -150,7 +148,30 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       > - namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic diag。
       > :::info
 
-  4. [可选操作]升级 Clinic Diag
+  4. [可选操作] 设置持久化数据卷
+
+      本操作可以为 Diag 挂载数据卷，以提供持久化数据的能力
+      修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件，配置 diag.volume 字段可以选择需要的 volume
+
+      例子:
+      ```
+      # 使用了 PVC 类型
+      volume:
+        persistentVolumeClaim:
+          claimName: local-storage-diag 
+      ```
+      ```
+      # 使用 Host 类型
+      volume:
+        hostPath:
+          path: /data/diag
+      ```
+      > :::info 注意
+      > 不支持多盘挂载
+      > 支持任意类型的 StorageClass
+      > :::info
+
+  5. [可选操作]升级 Clinic Diag
 
       如果需要升级 Clinic Diag，请先修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件，然后执行下面的命令进行升级：
 
@@ -228,7 +249,30 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       > namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic Diag。
       > :::info
 
-  5. [可选操作]升级 Clinic Diag
+  5. [可选操作] 设置持久化数据卷
+
+      本操作可以为 Diag 挂载数据卷，以提供持久化数据的能力
+      修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件，配置 diag.volume 字段可以选择需要的 volume
+
+      例子:
+      ```
+      # 使用了 PVC 类型
+      volume:
+        persistentVolumeClaim:
+          claimName: local-storage-diag 
+      ```
+      ```
+      # 使用 Host 类型
+      volume:
+        hostPath:
+          path: /data/diag
+      ```
+      > :::info 注意
+      > 不支持多盘挂载
+      > 支持任意类型的 StorageClass
+      > :::info
+
+  6. [可选操作]升级 Clinic Diag
 
       如果需要升级 Clinic Diag，请先修改 `./diag/values.yaml` 文件，然后执行下面的命令进行升级：
 
@@ -239,7 +283,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 </TabItem>
 </Tabs>
 
-### 第 3 步：检查 Clinic Diag Pod 的运行状态：
+### 第 4 步：检查 Clinic Diag Pod 的运行状态：
 
 使用以下命令查询 Diag 状态：
 
@@ -451,7 +495,7 @@ curl -s http://${host}:${port}/api/v1/data/${id}/upload
 
 ### 可选操作：本地查看数据
 
-采集完成的数据会保存在 Pod 的 `/diag-${id}` 目录中，可以通过以下方法进入 Pod 查看此数据：
+采集完成的数据会保存在 Pod 的 ` /diag/collector/diag-${id}` 目录中，可以通过以下方法进入 Pod 查看此数据：
 
 #### 1. 获取 `diag-collector-pod-name`
 
@@ -470,7 +514,7 @@ tidb-admin      diag-collector-69bf78478c-nvt47               1/1     Running   
 
 ```bash
 kubectl exec -n ${namespace} ${diag-collector-pod-name}  -it -- sh
-/ # cd diag-${id}
+cd  /diag/collector/diag-${id}
 ```
 
 其中，`${namespace}` 需要替换为 TiDB Operator 所在的 `namespace` 名称（通常为 `tidb-admin`）。

@@ -6,7 +6,7 @@ summary: 详细介绍在使用 TiUP 部署的集群上如何通过 PingCAP Clini
 
 # 使用 PingCAP Clinic Diag 诊断客户端
 
-对于使用 TiUP 部署的 TiDB 集群和 DM 集群，PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）可以通过 Clinic Diag 诊断客户端（以下简称为 Diag）与 [Clinic Server 云诊断平台](https://clinic.pingcap.com/clinic/#/login)（以下简称为 Clinic Server）实现远程定位集群问题和本地快速检查集群状态。
+对于使用 TiUP 部署的 TiDB 集群和 DM 集群，PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）可以通过 Clinic Diag 诊断客户端（以下简称为 Diag）与 [Clinic Server 云诊断平台](https://clinic.pingcap.com.cn)（以下简称为 Clinic Server）实现远程定位集群问题和本地快速检查集群状态。
 
 目前，PingCAP Clinic 诊断服务目前处于 Technical Preview 受邀测试使用阶段。
 
@@ -40,7 +40,7 @@ tiup install diag
 tiup update diag
 ```
 
-登录[ PingCAP Clinic 服务](https://clinic.pingcap.com/clinic/#/login)，获取上传 Token，并在 Diag 工具中设置上传 Token
+登录[ PingCAP Clinic 服务](https://clinic.pingcap.com.cn/portal/#/login)，获取上传 Token，并在 Diag 工具中设置上传 Token
 
 ```bash
 tiup diag config --token=${token-value}
@@ -188,7 +188,7 @@ tiup diag config --token=${token-value}
 Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag upload /home/qiaodan/diag-fNTnz5MGhr6
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>>>>
 Completed!
-Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
+Download URL: "https://clinic.pingcap.com.cn/diag/files?uuid=XXXX"
 ```
 
 完成上传后，你可以打开 `Download URL` 中的数据访问链接进行数据查看，也可以将 `Download URL` 中的数据访问链接发给与你对接的 PingCAP 技术支持人员。
@@ -229,7 +229,7 @@ Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
     Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag upload /home/qiaodan/diag-fNTnz5MGhr6
     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>>>>
     Completed!
-    Download URL: "https://clinic.pingcap.com:4433/diag/files?uuid=XXXX"
+    Download URL: "https://clinic.pingcap.com.cn/diag/files?uuid=XXXX"
     ```
 
 3. 完成上传后，你可以打开 `Download URL` 中的数据访问链接进行数据查看，也可以将`Download URL` 中的数据访问链接发给与你对接的 PingCAP 技术支持人员。
