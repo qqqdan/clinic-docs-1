@@ -1,5 +1,5 @@
 ---
-title: 在 Operator 部署环境使用 Clinic Diag 诊断客户端
+title: 在 Operator 部署环境使用
 summary: 详细介绍在使用 TiDB Operator 部署的集群上如何通过 Clinic Diag 诊断客户端进行数据采集和快速检查。
 ---
 
@@ -67,12 +67,12 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
 根据集群的网络连接情况，你可以选择以下方式部署 Clinic Diag Pod：
 
-- 连网快速部署：如果集群所在的网络能访问互联网，并且使用默认配置参数，推荐使用快速部署方式。
-- 连网普通部署：如果集群所在的网络能访问互联网，需要自定义 Diag Pod 的配置参数，推荐使用连网普通部署方式。
+- 在线快速部署：如果集群所在的网络能访问互联网，并且使用默认配置参数，推荐使用快速部署方式。
+- 在线普通部署：如果集群所在的网络能访问互联网，需要自定义 Diag Pod 的配置参数，推荐使用连网普通部署方式。
 - 离线部署：如果集群所在的网络不能访问互联网，可采用离线部署方式。
 
 <Tabs>
-<TabItem value="连网快速部署" label="连网快速部署" default>
+<TabItem value="在线快速部署" label="在线快速部署" default>
 
   1. 通过如下 helm 命令部署 Clinic Diag，将从 Docker Hub 下载最新 Diag 镜像
 
@@ -110,7 +110,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       ```
 
 </TabItem>
-<TabItem value="连网普通部署" label="连网普通部署">
+<TabItem value="在线普通部署" label="在线普通部署">
 
   1. 获取你要部署的 `Clinic diag` chart 中的 `values-diag-collector.yaml` 文件：
 
@@ -167,8 +167,8 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
           path: /data/diag
       ```
       > :::info 注意
-      > 不支持多盘挂载
-      > 支持任意类型的 StorageClass
+      > - 不支持多盘挂载
+      > - 支持任意类型的 StorageClass
       > :::info
 
   5. [可选操作]升级 Clinic Diag
@@ -287,8 +287,6 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
 使用以下命令查询 Diag 状态：
 
-  {{< copyable "shell-regular" >}}
-
   ```shell
   kubectl get pods --namespace tidb-admin -l app.kubernetes.io/instance=diag-collector
   ```
@@ -298,13 +296,13 @@ Pod 正常运行的输出如下：
   diag-collector-5c9d8968c-clnfr   1/1     Running   0          89s
   ```
 
-## 使用 Clinic Diag 工具采集诊断数据
+## 使用 Clinic Diag 采集诊断数据
 
-Clinic Diag 工具可以快速抓取 TiDB 集群的诊断数据，其中包括监控数据、配置信息等。
+Clinic Diag 可以快速抓取 TiDB 集群的诊断数据，其中包括监控数据、配置信息等。
 
 ### 使用场景：
 
-以下场景适用于使用 Clinic Diag 工具采集诊断数据：
+以下场景适用于使用 Clinic Diag 采集诊断数据：
 
 - 当集群出现问题，要咨询 PingCAP 技术支持时，需要提供集群诊断数据，协助技术支持人员定位问题。
 - 保留集群诊断数据，进行后期分析。
@@ -316,7 +314,7 @@ Clinic Diag 工具可以快速抓取 TiDB 集群的诊断数据，其中包括�
 
 ### 第 1 步：确定需要采集的数据
 
-如需查看 Clinic Diag 支持采集的数据详细列表，请参阅 [Clinic 数据采集说明 - Operator 环境](clinic/clinic-data-instruction-for-operator.md)。建议采集完整的监控数据、配置信息等数据，以便提升诊断效率。
+如需查看 Clinic Diag 支持采集的数据详细列表，请参阅 [Clinic 数据采集说明 - Operator 环境](https://clinic-docs.vercel.app/docs/getting-started/clinic-data-instruction-for-operator)。建议采集完整的监控数据、配置信息等数据，以便提升诊断效率。
 
 ### 第 2 步：采集数据
 
@@ -326,15 +324,11 @@ Clinic Diag 工具的各项操作均会通过 API 完成。
 
 - 如需查看节点 IP，可使用以下命令：
 
-    {{< copyable "shell-regular" >}}
-
     ```bash
     kubectl get node | grep node
     ```
 
 - 如需查看 `diag-collector service` 的端口号，可使用以下命令：
-
-    {{< copyable "shell-regular" >}}
 
     ```bash
     kubectl get service -n tidb-admin
@@ -349,8 +343,6 @@ Clinic Diag 工具的各项操作均会通过 API 完成。
 
 通过 API 请求发起一次数据采集任务：
 
-{{< copyable "shell-regular" >}}
-
 ```bash
 curl -s http://${host}:${port}/api/v1/collectors -X POST -d '{"clusterName": "${cluster-name}","namespace": "${cluster-namespace}","from": "2022-02-08 12:00 +0800","to": "2022-02-08 18:00 +0800"}'
 ```
@@ -359,12 +351,7 @@ API 调用参数说明：
 
 - `clusterName`：TiDB 集群名称
 - `namespace`：TiDB 集群所在的 `namespace 名称`（不是 TiDB Operator 所在的 `namespace`）
-- `collector`：可选参数，可配置需要采集的数据类型，支持 [metrics, config, perf]。若不配置该参数，默认采集 metrics 和 config 数据。
-  {{< copyable "shell-regular" >}}
-
-  ```bash
-  curl -s http://${host}:${port}/api/v1/collectors -X POST -d '{"clusterName": "${cluster-name}","namespace": "${cluster-namespace}","from": "2022-02-08 12:00 +0800","to": "2022-02-08 18:00 +0800","collectors": ["perf"]}'
-  ```
+- `collector`：可选参数，可配置需要采集的数据类型，支持 [monitor, config, perf]。若不配置该参数，默认采集 monitor 和 config 数据。
 - `from` 和 `to`：分别为采集的起止时间。`+0800` 代表时区，支持的时间格式如下：
 
  {{< copyable "shell-regular" >}}
@@ -383,8 +370,6 @@ API 调用参数说明：
   ```
 
   命令输出结果示例如下：
-
-  {{< copyable "shell-regular" >}}
 
   ```bash
       "clusterName": "${cluster-namespace}/${cluster-name}",
@@ -414,8 +399,6 @@ API 返回信息说明：
 
 通过 API 请求，获取采集任务的状态：
 
-{{< copyable "shell-regular" >}}
-
 ```bash
 curl -s http://${host}:${port}/api/v1/collectors/${id}
 {
@@ -440,8 +423,6 @@ curl -s http://${host}:${port}/api/v1/collectors/${id}
 
 完成采集任务后，可以通过 API 请求来获取数据集的采集时间和数据大小信息：
 
-{{< copyable "shell-regular" >}}
-
 ```bash
 curl -s http://${host}:${port}/api/v1/data/${id}
 {
@@ -462,8 +443,6 @@ curl -s http://${host}:${port}/api/v1/data/${id}
 
 通过 API 请求打包并上传收集完成的数据集：
 
- {{< copyable "shell-regular" >}}
-
 ```bash
 curl -s http://${host}:${port}/api/v1/data/${id}/upload -XPOST
 {
@@ -479,8 +458,6 @@ curl -s http://${host}:${port}/api/v1/data/${id}/upload -XPOST
 
 通过 API 请求，查看上传任务的状态：
 
-{{< copyable "shell-regular" >}}
-
 ```bash
 curl -s http://${host}:${port}/api/v1/data/${id}/upload
 {
@@ -492,14 +469,10 @@ curl -s http://${host}:${port}/api/v1/data/${id}/upload
 ```
 
 如果状态变为 `finished`，则表示打包与上传均已完成。此时，`result` 表示 Clinic Server 查看此数据集的链接，即需要发给 PingCAP 技术支持人员的数据访问链接。目前 Clinic Server 的数据访问链接只对 PingCAP 技术支持人员开放，上传数据的外部用户暂时无法打开该链接。
-
 ### 可选操作：本地查看数据
 
 采集完成的数据会保存在 Pod 的 ` /diag/collector/diag-${id}` 目录中，可以通过以下方法进入 Pod 查看此数据：
-
 #### 1. 获取 `diag-collector-pod-name`
-
-{{< copyable "shell-regular" >}}
 
 ```bash
 kubectl get pod --all-namespaces  | grep diag
@@ -507,10 +480,7 @@ tidb-admin      diag-collector-69bf78478c-nvt47               1/1     Running   
 ```
 
 其中，Diag Pod 的名称为 `diag-collector-69bf78478c-nvt47`，其所在的 `namespace` 为 `tidb-admin`。
-
 #### 2. 进入 Pod 并查看数据
-
-{{< copyable "shell-regular" >}}
 
 ```bash
 kubectl exec -n ${namespace} ${diag-collector-pod-name}  -it -- sh
@@ -518,11 +488,9 @@ cd  /diag/collector/diag-${id}
 ```
 
 其中，`${namespace}` 需要替换为 TiDB Operator 所在的 `namespace` 名称（通常为 `tidb-admin`）。
-
 ## 使用 Clinic Diag 工具快速诊断集群
 
 Clinic 诊断服务支持对集群的健康状态进行快速地诊断，主要支持检查配置项内容，快速发现不合理的配置项。
-
 ### 使用步骤
 
 本节详细介绍通过 Clinic 诊断服务快速诊断使用 TiDB Operator 部署的集群的具体方法。
@@ -535,8 +503,6 @@ Clinic 诊断服务支持对集群的健康状态进行快速地诊断，主要�
 
 通过 API 请求，在本地对集群进行快速诊断：
 
-{{< copyable "shell-regular" >}}
-
 ```bash
 curl -s http://${host}:${port}/api/v1/data/${id}/check -XPOST -d '{"types": ["config"]}'
 ```
@@ -544,8 +510,6 @@ curl -s http://${host}:${port}/api/v1/data/${id}/check -XPOST -d '{"types": ["co
 其中，`id` 为采集数据任务的 ID 编号，在上述例子中为 `fMcXDZ4hNzs`。
 
 请求结果中会列出已发现的配置风险内容和建议配置的知识库链接，具体示例如下：
-
-{{< copyable "shell-regular" >}}
 
 ```bash
 stdout:

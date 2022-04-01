@@ -19,6 +19,8 @@ PingCAP Clinic 目前处于 Technical Preview 受邀测试使用阶段。该服�
 
 - Clinic Server：部署在云端的云服务。Clinic Server 提供 SaaS 模式的诊断服务，不仅能接收上传到该组件的诊断数据，也可以提供在线诊断环境，用于存储、查看和诊断已上传的诊断数据，并提供集群诊断报告。
 
+Clinic Server 中国区（clinic.pingcap.com.cn）是部署在云端的云服务，位于 PingCAP 内网（中国境内）。如果你把采集的数据上传到了 Clinic Server 中国区供 PingCAP 技术人员远程定位集群问题，这些数据将存储于 PingCAP 设立在 AWS S3 中国区（北京）的服务器。PingCAP 对数据访问权限进行了严格的访问控制，只有经授权的内部技术人员可以访问该数据。
+
 ## 使用场景
 
 - 远程定位集群问题

@@ -1,10 +1,10 @@
 ---
 sidebar_position: 3
-title: 使用 PingCAP Clinic Diag 诊断客户端
+title: 在 TiUP 部署环境使用
 summary: 详细介绍在使用 TiUP 部署的集群上如何通过 PingCAP Clinic Diag 诊断客户端采集 TiDB 集群数据和本地快速检查集群状态。
 ---
 
-# 使用 PingCAP Clinic Diag 诊断客户端
+# TiUP 环境的 Clinic 诊断服务操作手册
 
 对于使用 TiUP 部署的 TiDB 集群和 DM 集群，PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）可以通过 Clinic Diag 诊断客户端（以下简称为 Diag）与 [Clinic Server 云诊断平台](https://clinic.pingcap.com.cn)（以下简称为 Clinic Server）实现远程定位集群问题和本地快速检查集群状态。
 
@@ -43,7 +43,7 @@ tiup update diag
 登录[ PingCAP Clinic 服务](https://clinic.pingcap.com.cn/portal/#/login)，获取上传 Token，并在 Diag 工具中设置上传 Token
 
 ```bash
-tiup diag config --token=${token-value}
+tiup diag config clinic.token ${token-value}
 ```
 
 > :::info 注意
@@ -185,10 +185,9 @@ tiup diag config --token=${token-value}
 输出结果示例如下：
 
 ```bash
-Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag upload /home/qiaodan/diag-fNTnz5MGhr6
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>>>>
 Completed!
-Download URL: "https://clinic.pingcap.com.cn/diag/files?uuid=XXXX"
+Download URL: "https://clinic.pingcap.com.cn/portal/#/orgs/4/clusters/XXXX"
 ```
 
 完成上传后，你可以打开 `Download URL` 中的数据访问链接进行数据查看，也可以将 `Download URL` 中的数据访问链接发给与你对接的 PingCAP 技术支持人员。
@@ -206,7 +205,6 @@ Download URL: "https://clinic.pingcap.com.cn/diag/files?uuid=XXXX"
     打包时，Diag 会同时对数据进行压缩和加密。在测试环境中，800 MB 数据压缩后变为 57 MB。示例输出如下：
 
     ```bash
-    Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag package diag-fNTnz5MGhr6
     packaged data set saved to /home/qiaodan/diag-fNTnz5MGhr6.diag
     ```
 
@@ -226,10 +224,9 @@ Download URL: "https://clinic.pingcap.com.cn/diag/files?uuid=XXXX"
     输出结果示例如下：
 
     ```bash
-    Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag upload /home/qiaodan/diag-fNTnz5MGhr6
     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>>>>
     Completed!
-    Download URL: "https://clinic.pingcap.com.cn/diag/files?uuid=XXXX"
+    Download URL: "https://clinic.pingcap.com.cn/portal/#/orgs/4/clusters/XXXX"
     ```
 
 3. 完成上传后，你可以打开 `Download URL` 中的数据访问链接进行数据查看，也可以将`Download URL` 中的数据访问链接发给与你对接的 PingCAP 技术支持人员。

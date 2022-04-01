@@ -1,11 +1,13 @@
 ---
-title: Operator Diag 数据采集范围说明
+title: Operator 环境
 summary: 详细说明 Clinic Diag 诊断客户端会在使用 TiDB Operator 部署的集群中采集哪些诊断数据。
 ---
 
 # Clinic 数据采集说明 - Operator 环境
 
 本文提供了 PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）在使用 Operator 部署的 TiDB 集群中能够采集的诊断数据类型，并列出了各个采集项对应的采集参数。当执行 Clinic Diag 诊断工具（以下简称为 Diag）数据采集命令时，你可以依据需要采集的数据类型，在命令中添加所需的采集参数。
+
+Clinic Server 中国区（clinic.pingcap.com.cn）是部署在云端的云服务，位于 PingCAP 内网（中国境内）。如果你把采集的数据上传到了 Clinic Server 中国区供 PingCAP 技术人员远程定位集群问题，这些数据将存储于 PingCAP 设立在 AWS S3 中国区（北京）的服务器。PingCAP 对数据访问权限进行了严格的访问控制，只有经授权的内部技术人员可以访问该数据。
 
 通过 Clinic 诊断服务对使用 TiDB Operator 部署的集群采集的数据会**仅**用于集群问题诊断与分析。
 
