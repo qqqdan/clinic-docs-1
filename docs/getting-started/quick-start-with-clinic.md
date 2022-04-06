@@ -8,7 +8,7 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 
 本指南介绍如何使用 PingCAP Clinic 诊断服务（以下简称为 PingCAP Clinic）快速采集、上传、查看集群诊断数据。
 
-PingCAP Clinic 由 Diag 客户端（以下简称为 Diag）和 [Clinic Server 云服务平台](https://clinic.pingcap.com.cn)（以下简称为 Clinic Server）组成。关于 Diag 和 Clinic Server 的详细介绍，请参考 [PingCAP Clinic 诊断服务简介](/clinic/clinic-introduction.md)。
+PingCAP Clinic 由 Diag 客户端（以下简称为 Diag）和 [Clinic Server 云服务平台](https://clinic.pingcap.com.cn)（以下简称为 Clinic Server）组成。关于 Diag 和 Clinic Server 的详细介绍，请参考 [PingCAP Clinic 诊断服务简介](/docs/getting-started/index.md)。
 
 当集群出现问题，需要远程咨询 PingCAP 技术支持时，为了提高定位和解决问题的效率，你可以使用 Diag 采集诊断数据，上传数据到 Clinic Server 并获取数据链接，然后将数据链接提供给技术支持人员。
 
@@ -36,6 +36,8 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
 4. 获取用于上传数据的 Access Token（以下简称为 Token）。使用 Diag 上传数据时，你需要通过 Token 进行用户认证，以保证数据上传到组织后被安全地隔离。获取一个 Token 后，你可以重复使用该 Token，具体获取方法如下：
 
     点击 Cluster 页面右下角的图标，选择 **Get Access Token For Diag Tool**，在弹出窗口中点击 **+** 符号获取 Token 后，复制并保存 Token 信息。
+
+    ![获取 token 截图](/static/img/get-token.png)
 
     > :::info 注意
     >
@@ -81,13 +83,12 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
 
         ```bash
         Completed!
-        Download URL: "https://clinic.pingcap.com.cn/clinic/#/orgs/75/clusters/7055188676317281573 "
+        Download URL: "https://clinic.pingcap.com.cn/clinic/#/orgs/75/clusters/XXXXX "
         ```
 
         > :::info 注意
         >
         > 使用该方式进行上传时，你需要使用 Diag v0.7.0 及以上版本。
-
         > :::info
 
     - 如果你所在的集群无法访问互联网，需要先打包数据后进行上传。具体步骤，请参阅[上传方式 2：打包后上传](https://clinic-docs.vercel.app/docs/getting-started/clinic-user-guide-for-tiup#%E6%96%B9%E5%BC%8F-2%E6%89%93%E5%8C%85%E5%90%8E%E4%B8%8A%E4%BC%A0)。
