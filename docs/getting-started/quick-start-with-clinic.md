@@ -37,8 +37,6 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
 
     点击 Cluster 页面右下角的图标，选择 **Get Access Token For Diag Tool**，在弹出窗口中点击 **+** 符号获取 Token 后，复制并保存 Token 信息。
 
-    ![Token 示例](/media/clinic-get-token.png)
-
     > :::info 注意
     >
     > - 为了确保数据的安全性，TiDB 只在创建 Token 时显示 Token 信息。如果丢失了 Token 信息，你可以删除旧 Token 后重新创建。
@@ -90,7 +88,7 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
         >
         > 使用该方式进行上传时，你需要使用 Diag v0.7.0 及以上版本。
 
-        > :::info 
+        > :::info
 
     - 如果你所在的集群无法访问互联网，需要先打包数据后进行上传。具体步骤，请参阅[上传方式 2：打包后上传](https://clinic-docs.vercel.app/docs/getting-started/clinic-user-guide-for-tiup#%E6%96%B9%E5%BC%8F-2%E6%89%93%E5%8C%85%E5%90%8E%E4%B8%8A%E4%BC%A0)。
 
