@@ -10,11 +10,11 @@ import TabItem from '@theme/TabItem';
 
 对于使用 TiDB Operator 部署的集群，Clinic 诊断服务可以通过 Clinic Diag 诊断客户端与 Clinic Server 云服务对该集群进行数据采集和集群快速诊断。
 
-> :::info 注意
->
-> 本文档**仅**适用于使用 TiDB Operator 部署的集群。如需查看适用于使用 TiUP 部署的集群，请参阅 [TiUP 环境的 Clinic 操作手册](/clinic-user-guide-for-tiup.md)。
-> Clinic 诊断服务暂时**不支持**对 TiDB Ansible 部署的集群进行数据采集。
-> :::info
+:::info 注意
+
+本文档**仅**适用于使用 TiDB Operator 部署的集群。如需查看适用于使用 TiUP 部署的集群，请参阅 [TiUP 环境的 Clinic 操作手册](/clinic-user-guide-for-tiup.md)。
+Clinic 诊断服务暂时**不支持**对 TiDB Ansible 部署的集群进行数据采集。
+:::info
 
 对于使用 TiDB Operator 部署的集群，Clinic Diag 需要部署为一个独立的 Pod。本文介绍如何使用 kubectl 命令创建并部署 Diag pod 后，通过 API 调用继续数据采集和快速检查。
 
@@ -58,10 +58,9 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 #### 获取客户端上传 Token
 点击页面上的上传图标，选择“Get Access Token For Diag Tool” ，在弹出窗口中复制并保存 Token 信息。
 
-> *** 注意 ***
->
-> - Token 内容只在创建时展示，如果用户丢失 Token 信息，可以删除老 Token，重新创建。
-
+:::info 注意
+- Token 内容只在创建时展示，如果用户丢失 Token 信息，可以删除老 Token，重新创建。
+:::info
 
 ### 第 3 步：部署 Clinic Diag Pod
 
@@ -83,19 +82,19 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
           --set diag.clinicToken=${clinic_token }
     ```
 
-    > :::info 注意
-    > 如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
-    >
-    >   ```shell
-    >   helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.0 \
-    >       --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
-    >       --set diag.clinicToken= ${clinic_token }
-    >   ```
-    > :::info
+    :::info 注意
+    如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
+    
+    ```shell
+    helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.0 \
+         --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
+         --set diag.clinicToken= ${clinic_token }
+    ```
+    :::info
 
   2. 部署后返回如下：
 
-      ```
+    ```
     NAME: diag-collector
     LAST DEPLOYED: Tue Mar 15 13:00:44 2022
     NAMESPACE: tidb-admin
@@ -107,7 +106,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       kubectl get pods --namespace tidb-admin -l app.kubernetes.io/instance=diag-collector
       kubectl get svc --namespace tidb-admin -l app.kubernetes.io/name=diag-collector
 
-      ```
+    ```
 
 </TabItem>
 <TabItem value="在线普通部署" label="在线普通部署">
@@ -119,10 +118,10 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       helm inspect values pingcap/diag --version=${chart_version} > ${HOME}/diag-collector/values-diag-collector.yaml
       ```
 
-      > :::info 注意
-      >
-      > `${chart_version}` 在后续文档中代表 chart 版本，例如 `v0.7.0`，可以通过 `helm search repo -l diag` 查看当前支持的版本。
-      > :::info
+      :::info 注意
+    
+      `${chart_version}` 在后续文档中代表 chart 版本，例如 `v0.7.0`，可以通过 `helm search repo -l diag` 查看当前支持的版本。
+      :::info
 
   2. 配置 `values-diag-collector.yaml` 文件
 
@@ -130,11 +129,11 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
       其他项目例如：`limits`、`requests` 和 `volume`，请根据需要进行修改。
 
-      > :::info 注意
-      >
-      > - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
-      > - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
-      > :::info
+      :::info 注意
+    
+      - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
+      - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
+      :::info
 
   3. 部署 Clinic Diag
 
@@ -143,10 +142,10 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       kubectl get pods --namespace tidb-admin -l app.kubernetes.io/instance=diag-collector
       ```
 
-      > :::info 注意
-      >
-      > - namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic diag。
-      > :::info
+      :::info 注意
+      
+      - namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic diag。
+      :::info
 
   4. [可选操作] 设置持久化数据卷
 
@@ -230,11 +229,11 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
       其他项目例如：`limits`、`requests` 和 `volume`，请根据需要进行修改。
 
-      > :::info 注意
-      >
-      > - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
-      > - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
-      > :::info
+      :::info 注意
+      
+      - 请参照前文中[第 2 步：登录 Clinic Server 获取 Clinic Token](#第-2-步-：-登录-clinic-server-获取-clinic-token)的内容获取 Token。
+      - 部署 `diag-collector`，会用到 `pingcap/diag` 镜像，如果无法从 docker hub 下载该镜像，可以修改 `${HOME}/diag-collector/values-diag-collector.yaml` 文件中的 `image.diagImage` 为 `registry.cn-beijing.aliyuncs.com/tidb/diag`。
+      :::info
 
   4. 安装 Clinic Diag
 
@@ -244,10 +243,10 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       helm install diag-collector ./diag --namespace=tidb-admin
       ```
 
-      > :::info 注意
-      >
-      > namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic Diag。
-      > :::info
+      :::info 注意
+      
+      namespace 应设置为和 TiDB Operator 相同，若没有部署 TiDB Operator，请先部署 TiDB Operator 后再部署 Clinic Diag。
+      :::info
 
   5. [可选操作] 设置持久化数据卷
 
@@ -307,10 +306,10 @@ Clinic Diag 可以快速抓取 TiDB 集群的诊断数据，其中包括监控�
 - 当集群出现问题，要咨询 PingCAP 技术支持时，需要提供集群诊断数据，协助技术支持人员定位问题。
 - 保留集群诊断数据，进行后期分析。
 
-> :::info 注意
->
-> 对于使用 TiDB Operator 部署的集群，暂不支持收集日志、配置文件、系统硬件信息等诊断数据。
-> :::info
+:::info 注意
+
+对于使用 TiDB Operator 部署的集群，暂不支持收集日志、配置文件、系统硬件信息等诊断数据。
+:::info
 
 ### 第 1 步：确定需要采集的数据
 
@@ -390,10 +389,10 @@ API 返回信息说明：
 - `id`：此任务的 ID 编号。在之后的操作中，此 ID 为定位到此次任务的唯一信息。
 - `status` 为此任务的当前状态，`accepted` 代表采集任务进入队列。
 
-> :::info 注意
->
-> 返回命令结果只代表数据采集任务已经开始，并不表示采集已完成。要了解采集是否全部完成，需要通过下一步操作来查看采集任务的状态。
-> :::info
+:::info 注意
+
+返回命令结果只代表数据采集任务已经开始，并不表示采集已完成。要了解采集是否全部完成，需要通过下一步操作来查看采集任务的状态。
+:::info
 
 #### 2. 查看采集数据任务状态
 
