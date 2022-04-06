@@ -37,10 +37,10 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
 
     ![获取 token 截图](/img/get-token.png)
 
-     :::info 注意
-     - 为了确保数据的安全性，TiDB 只在创建 Token 时显示 Token 信息。如果丢失了 Token 信息，你可以删除旧 Token 后重新创建。
-     - 该 Token 只用于数据上传，访问数据时不需要使用 Token。
-     :::info
+    :::info 注意
+    - 为了确保数据的安全性，TiDB 只在创建 Token 时显示 Token 信息。如果丢失了 Token 信息，你可以删除旧 Token 后重新创建。
+    - 该 Token 只用于数据上传，访问数据时不需要使用 Token。
+    :::info
 
 5. 在 Diag 中设置 Token：
 
