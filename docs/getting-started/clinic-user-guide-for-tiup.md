@@ -211,10 +211,9 @@ Download URL: "https://clinic.pingcap.com.cn/portal/#/orgs/4/clusters/XXXX"
     tiup diag upload ${filepath}
     ```
 
-    > :::info 注意
-    >
-    > 如果尚未配置 Token，会上传失败，并提示你设置 Token 。Token 获取方法可以参考[PingCAP Clinic 快速上手](https://clinic-docs.vercel.app/docs/getting-started/quick-start-with-clinic)。
-    > :::info
+    :::info 注意
+    如果尚未配置 Token，会上传失败，并提示你设置 Token 。Token 获取方法可以参考[PingCAP Clinic 快速上手](https://clinic-docs.vercel.app/docs/getting-started/quick-start-with-clinic)。
+    :::info
 
     输出结果示例如下：
 

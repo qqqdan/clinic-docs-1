@@ -12,11 +12,10 @@ summary: 说明在 TiUP 部署的集群中，如何使用 Clinic 收集数据并
 
 PingCAP Clinic 目前处于 Technical Preview 阶段。
 
-   :::info 注意
-   
-   - 本指南中的数据采集和上传的方式仅适用于 TiUP 部署的集群。
-   - 通过 PingCAP Clinic 在 TiDB 集群中采集并上传到 Clinic Server 的数据**仅**用于诊断和分析集群问题。
-   :::info
+:::info 注意
+- 本指南中的数据采集和上传的方式仅适用于 TiUP 部署的集群。
+- 通过 PingCAP Clinic 在 TiDB 集群中采集并上传到 Clinic Server 的数据**仅**用于诊断和分析集群问题。
+:::info
 
 ## 准备工作
 
@@ -39,7 +38,6 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
     ![获取 token 截图](/img/get-token.png)
 
      :::info 注意
-    
      - 为了确保数据的安全性，TiDB 只在创建 Token 时显示 Token 信息。如果丢失了 Token 信息，你可以删除旧 Token 后重新创建。
      - 该 Token 只用于数据上传，访问数据时不需要使用 Token。
      :::info
@@ -83,9 +81,9 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
         Download URL: "https://clinic.pingcap.com.cn/clinic/#/orgs/75/clusters/XXXXX "
         ```
 
-        :::info 注意
-        使用该方式进行上传时，你需要使用 Diag v0.7.0 及以上版本。
-        :::info
+     :::info 注意
+     使用该方式进行上传时，你需要使用 Diag v0.7.0 及以上版本。
+     :::info
 
     - 如果你所在的集群无法访问互联网，需要先打包数据后进行上传。具体步骤，请参阅[上传方式 2：打包后上传](https://clinic-docs.vercel.app/docs/getting-started/clinic-user-guide-for-tiup#%E6%96%B9%E5%BC%8F-2%E6%89%93%E5%8C%85%E5%90%8E%E4%B8%8A%E4%BC%A0)。
 
