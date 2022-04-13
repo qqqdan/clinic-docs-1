@@ -25,7 +25,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: `docs/${process.env.LANG}`,
+          path: `docs/${process.env.DOCS_LANG}`,
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl: "https://github.com/shhdgit/clinic-docs/blob/main",
