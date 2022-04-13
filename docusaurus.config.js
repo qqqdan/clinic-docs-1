@@ -3,6 +3,9 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -22,7 +25,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: "docs/zh",
+          path: `docs/${process.env.LANG}`,
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl: "https://github.com/shhdgit/clinic-docs/blob/main",
