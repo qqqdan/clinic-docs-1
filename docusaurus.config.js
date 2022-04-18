@@ -19,6 +19,11 @@ const config = {
   organizationName: "pingcap", // Usually your GitHub org/user name.
   projectName: "clinic-docs", // Usually your repo name.
 
+  i18n: {
+    defaultLocale: process.env.DOCS_LANG,
+    locales: ["en", "zh"],
+  },
+
   presets: [
     [
       "classic",
@@ -59,6 +64,10 @@ const config = {
             docId: "index",
             position: "left",
             label: "Guide",
+          },
+          {
+            type: "localeDropdown",
+            position: "right",
           },
           // {
           //   href: "https://github.com/facebook/docusaurus",
