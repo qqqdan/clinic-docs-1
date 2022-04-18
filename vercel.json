@@ -1,7 +1,7 @@
 {
   "redirects": [
-    { "source": "/en/:match*", "destination": "https://clinic-docs-en.vercel.app/:match*" },
-    { "source": "/zh/:match*", "destination": "https://clinic-docs.vercel.app/:match*" },
+    { "source": "/en/:match*", "destination": "https://clinic-docs-en.vercel.app/:match*", "basePath": false },
+    { "source": "/zh/:match*", "destination": "https://clinic-docs.vercel.app/:match*", "basePath": false },
     { "source": "/", "destination": "/docs" }
 	]
 }
