@@ -327,7 +327,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
     ```
 
     :::info 注意
-    - 如果集群未开启 TLS ，可以设置 'diag.tlsEnabled=false' ，此时创建的 Role 将不会带有 'secrets' 的 'get' 权限。
+    - 如果集群未开启 TLS ，可以设置 'diag.tlsEnabled=false' ，此时创建的 Role 将不会带有 'secrets' 的 'get' 和 'list' 权限。
     
       ```shell
       helm install --namespace tidb-cluster diag-collector pingcap/diag \
