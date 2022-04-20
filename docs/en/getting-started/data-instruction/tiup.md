@@ -6,15 +6,13 @@ summary: Learn what diagnostic data can be collected by PingCAP Clinic Diagnosti
 
 # PingCAP Clinic Diagnostic Data - TiUP
 
-This document provides the types of diagnostic data that can be collected by PingCAP Clinic Diagnostic Service (PingCAP Clinic) from the TiDB and DM clusters deployed using TiUP. Also, the document lists the parameters for data collection corresponding to each data type. When running a command to [collect data using Diag client (Diag)](/clinic/clinic-user-guide-for-tiup.md), you can add the required parameters to the command according to the types of the data to be collected.
+This document provides the types of diagnostic data that can be collected by PingCAP Clinic Diagnostic Service (PingCAP Clinic) from the TiDB and DM clusters deployed using TiUP. Also, the document lists the parameters for data collection corresponding to each data type. When running a command to [collect data using Diag client (Diag)](https://clinic-docs.vercel.app/docs/getting-started/clinic-user-guide-for-tiup), you can add the required parameters to the command according to the types of the data to be collected.
 
 The diagnostic data collected by PingCAP Clinic is **only** used for troubleshooting cluster problems.
 
-Clinic Server is a diagnostic service deployed in the cloud. Currently, you can upload the collected diagnostic data to [Clinic Server China](https://clinic.pingcap.com.cn) only. The uploaded data is stored in the AWS S3 China (Beijing) region server set up by PingCAP. Clinic Server Global will be provided soon with a new URL and data storage location. For details, see [PingCAP Clinic components](/clinic/clinic-introduction.md).
+Clinic Server is a diagnostic service deployed in the cloud. Currently, you can upload the collected diagnostic data to [Clinic Server China](https://clinic.pingcap.com.cn) only. The uploaded data is stored in the AWS S3 China (Beijing) region server set up by PingCAP. Clinic Server Global will be provided soon with a new URL and data storage location. 
 
 PingCAP strictly controls permissions for data access and only allows authorized in-house technical support staff to access the uploaded data.
-
-After a technical support case is closed, PingCAP permanently deletes or anonymizes the corresponding data within 90 days.
 
 ## TiDB clusters
 
