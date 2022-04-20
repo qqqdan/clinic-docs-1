@@ -22,42 +22,42 @@ Clinic Server 中国区（clinic.pingcap.com.cn）是部署在云端的云服务
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
-| 实时配置 | `config.json` | `--include=config` |
-| 性能数据| `cpu_profile.proto`, `mem_heap.proto`,`goroutine.txt`,`mutex.txt` | `--include=perf` |
+| 实时配置 | `config.json` | `collectors:config` |
+| 性能数据| `cpu_profile.proto`, `mem_heap.proto`,`goroutine.txt`,`mutex.txt` | `collectors:perf` |
 
 ### TiKV 诊断数据
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
-| 实时配置 | `config.json` | `--include=config` |
-| 性能数据| `cpu_profile.proto` | `--include=perf` |
+| 实时配置 | `config.json` | `collectors:config` |
+| 性能数据| `cpu_profile.proto` | `collectors:perf` |
 
 ### PD 诊断数据
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
-| 实时配置 | `config.json` |`--include=config` |
-| `tiup ctl pd -u http://${pd IP}:${PORT} store` 的输出结果 | `store.json` | `--include=config` |
-| `tiup ctl pd -u http://${pd IP}:${PORT} config placement-rules show` 的输出结果 | `placement-rule.json` | `--include=config` |
-| 性能数据| `cpu_profile.proto`, `mem_heap.proto`,`goroutine.txt`,`mutex.txt` | `--include=perf` |
+| 实时配置 | `config.json` |`collectors:config` |
+| `tiup ctl pd -u http://${pd IP}:${PORT} store` 的输出结果 | `store.json` | `collectors:config` |
+| `tiup ctl pd -u http://${pd IP}:${PORT} config placement-rules show` 的输出结果 | `placement-rule.json` | `collectors:config` |
+| 性能数据| `cpu_profile.proto`, `mem_heap.proto`,`goroutine.txt`,`mutex.txt` | `collectors:perf` |
 
 ### TiFlash 诊断数据
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
-| 实时配置 | `config.json` |`--include=config` |
-| 性能数据| `cpu_profile.proto` | `--include=perf` |
+| 实时配置 | `config.json` |`collectors:config` |
+| 性能数据| `cpu_profile.proto` | `collectors:perf` |
 
 ### TiCDC 诊断数据
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
-| 实时配置 | `config.json` |`--include=config` |
-| Debug数据| `info.txt`,`status.txt`,`changefeeds.txt`,`captures.txt`,`processors.txt` | `--include=debug` |
+| 实时配置 | `config.json` |`collectors:config` |
+| Debug数据| `info.txt`,`status.txt`,`changefeeds.txt`,`captures.txt`,`processors.txt` | `collectors:debug` |
 
 ### Prometheus 监控数据
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
-| 所有的 Metrics 数据 | `{metric_name}.json` | `--include=monitor` |
-| Alert 配置 | `alerts.json` | `--include=monitor` |
+| 所有的 Metrics 数据 | `{metric_name}.json` | `collectors:monitor` |
+| Alert 配置 | `alerts.json` | `collectors:monitor` |
