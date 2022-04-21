@@ -136,10 +136,10 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     helm inspect values pingcap/diag --version=${chart_version} > ${HOME}/diag-collector/values-diag-collector.yaml
     ```
 
-    :::info Note
-    `${chart_version}` represents the chart version in subsequent docs, such as `v0.7.0`, you can check the currently supported version by
-    `helm search repo -l diag`.
-    :::info
+:::info Note
+`${chart_version}` represents the chart version in subsequent docs, such as `v0.7.0`, you can check the currently supported version by
+`helm search repo -l diag`.
+:::info
 
   2. configuration values-diag-collector.yaml file
 
@@ -147,10 +147,10 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
 
     Other items such as: `limits`, `requests` and `volume `, please modify as needed.
 
-    :::info Note
-    - Please refer to the content of [Step 2: Log in to Clinic Server to obtain Clinic Token] (#Step-2-:-log-in-to-clinic-server-to-get-clinic-token) to obtain Token.
-    - To deploy `diagonal-collector`, the`pingcap/diag` image will be used. If the image cannot be downloaded from docker hub, you can modify the `image.diag Image `in the` ${HOME}/diagonal-collector/values-diag-collector.yaml `file to registry.cn-beijing.aliyuncs.com/tidb/diag`.
-    :::info
+:::info Note
+- Please refer to the content of [Step 2: Log in to Clinic Server to obtain Clinic Token] (#Step-2-:-log-in-to-clinic-server-to-get-clinic-token) to obtain Token.
+- To deploy `diagonal-collector`, the`pingcap/diag` image will be used. If the image cannot be downloaded from docker hub, you can modify the `image.diag Image `in the` ${HOME}/diagonal-collector/values-diag-collector.yaml `file to registry.cn-beijing.aliyuncs.com/tidb/diag`.
+:::info
 
   3. Deploy Clinic Diag
 
@@ -159,9 +159,9 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     kubectl get pods --namespace tidb-admin -l app.kubernetes.io/instance=diag-collector
     ```
 
-    :::info Note
-    - The namespace should be set to the same as the TiDB Operator. If the TiDB Operator is not deployed, please deploy the TiDB Operator before deploying the Clinic Diag.
-    :::info
+:::info Note
+- The namespace should be set to the same as the TiDB Operator. If the TiDB Operator is not deployed, please deploy the TiDB Operator before deploying the Clinic Diag.
+:::info
 
   4. [Optional Action] Set persistent data volume
 
@@ -182,10 +182,11 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
         hostPath:
           path: /data/diag
     ```
-    :::info Note
-    - Multi-disk mount is not supported
-    - Support any type of StorageClass
-    :::info
+
+:::info Note
+- Multi-disk mount is not supported
+- Support any type of StorageClass
+:::info
 
 </TabItem>
 <TabItem value="Offline deployment" label="Offline deployment">
@@ -235,9 +236,9 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
 
     Other items such as: `limits`, `requests` and`volume `, please modify as needed.
 
-    :::info Note
-    - Please refer to the content of [Step 2: Log in to Clinic Server to obtain Clinic Token] (#Step-2-:-log-in-to-clinic-server-to-get-clinic-token) to obtain Token.
-    :::info
+:::info Note
+- Please refer to the content of [Step 2: Log in to Clinic Server to obtain Clinic Token] (#Step-2-:-log-in-to-clinic-server-to-get-clinic-token) to obtain Token.
+:::info
 
   4. Install Clinic Diag
 
@@ -247,9 +248,9 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     helm install diag-collector ./diag --namespace=tidb-admin
     ```
 
-    :::info Note
-    The namespace should be set to the same as the TiDB Operator. If the TiDB Operator is not deployed, please deploy the TiDB Operator first and then deploy Clinic Diag.
-    :::info
+:::info Note
+The namespace should be set to the same as the TiDB Operator. If the TiDB Operator is not deployed, please deploy the TiDB Operator first and then deploy Clinic Diag.
+:::info
 
   5. [Optional Action] Set persistent data volume
 
@@ -270,17 +271,19 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
         hostPath:
           path: /data/diag
     ```
-    :::info Note
-    - Multi-disk mount is not supported
-    - Support any type of StorageClass
-    :::info
+
+:::info Note
+- Multi-disk mount is not supported
+- Support any type of StorageClass
+:::info
 
 </TabItem>
 
 <TabItem value="Least privilege deployment" label="Least privilege deployment" default>
- :::info Note
-  - This deployment method deploys Diag to the namespace where the target cluster is located. Diag can only collect data in the namespace, and cannot collect data across namespaces.
-  :::info
+
+:::info Note
+- This deployment method deploys Diag to the namespace where the target cluster is located. Diag can only collect data in the namespace, and cannot collect data across namespaces.
+:::info
 
   1. Confirm the permissions of the deployment user
 
@@ -304,24 +307,25 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
           --set diag.clinicToken=${clinic_token} \
           --set diag.clusterRoleEnabled=false
     ```
-    :::info Note
-    - If the cluster does not have TLS enabled, you can set `diag.tls Enabled = false`, and the Role created at this time will not have`get ` and `list` permissions for `secrets`.
 
-      ```shell
-      helm install --namespace tidb-cluster diag-collector pingcap/diag \
-            --set diag.clinicToken=${clinic_token} \
-            --set diag.tlsEnabled=false \
-            --set diag.clusterRoleEnabled=false
-      ```
-    - If accessing Docker Hub is slow, you can use the image on Alibaba Cloud:
+:::info Note
+- If the cluster does not have TLS enabled, you can set `diag.tls Enabled = false`, and the Role created at this time will not have`get ` and `list` permissions for `secrets`.
 
-      ```shell
-      helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.0 \
-          --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
-          --set diag.clinicToken= ${clinic_token} \
-          --set diag.clusterRoleEnabled=false
-      ```
-    :::info
+  ```shell
+  helm install --namespace tidb-cluster diag-collector pingcap/diag \
+        --set diag.clinicToken=${clinic_token} \
+        --set diag.tlsEnabled=false \
+        --set diag.clusterRoleEnabled=false
+  ```
+- If accessing Docker Hub is slow, you can use the image on Alibaba Cloud:
+
+  ```shell
+  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.0 \
+      --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
+      --set diag.clinicToken= ${clinic_token} \
+      --set diag.clusterRoleEnabled=false
+  ```
+:::info
 
   3. After deployment, return the following:
 
