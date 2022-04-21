@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 For clusters deployed using TiDB Operator, Clinic Diagnostic Service can perform data collection and cluster rapid diagnosis on the cluster through Clinic Diag diagnostic client side and Clinic Server Cloud as a Service.
 
-::: info Note
+:::info Note
 This document **only** applies to clusters deployed with TiDB Operator. To view clusters for TiUP deployments, see the [Clinic Operations Manual for TiUP Environments](/clinic-user-guide-for-tiup.md).
 Clinic Diagnostics Service temporarily **does not support** data collection on clusters deployed by TiDB Ansible.
 :::info
@@ -56,7 +56,7 @@ PolicyRule:
   tidbclusters.pingcap.com  []                 []              [get list]
   tidbmonitors.pingcap.com  []                 []              [get list]
 ```
-::: info Note
+:::info Note
 - Smaller permissions can be used if the cluster situation qualifies for least privilege deployment. See [Least Privilege Deployment](#step-3-:-deploy-the-clinic-diag-pod) for details.
 :::info
 
@@ -77,7 +77,7 @@ Click the upload icon on the page, select "Get Access Token For Diag Tool", copy
 
  ![Get Token](/img/get-token.png)
 
-::: info Note
+:::info Note
 - Token content is only displayed when it is created. If the user loses the Token information, the old Token can be deleted and recreated.
 :::info
 
@@ -100,7 +100,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
           --set diag.clinicToken=${clinic_token }
     ```
 
-    ::: info Note
+    :::info Note
     If accessing Docker Hub is slow, you can use the image on Alibaba Cloud:
 
     ```shell
@@ -136,7 +136,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     helm inspect values pingcap/diag --version=${chart_version} > ${HOME}/diag-collector/values-diag-collector.yaml
     ```
 
-    ::: info Note
+    :::info Note
     `${chart_version}` represents the chart version in subsequent docs, such as `v0.7.0`, you can check the currently supported version by
     `helm search repo -l diag`.
     :::info
@@ -147,7 +147,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
 
     Other items such as: `limits`, `requests` and `volume `, please modify as needed.
 
-    ::: info Note
+    :::info Note
     - Please refer to the content of [Step 2: Log in to Clinic Server to obtain Clinic Token] (#Step-2-:-log-in-to-clinic-server-to-get-clinic-token) to obtain Token.
     - To deploy `diagonal-collector`, the`pingcap/diag` image will be used. If the image cannot be downloaded from docker hub, you can modify the `image.diag Image `in the` ${HOME}/diagonal-collector/values-diag-collector.yaml `file to registry.cn-beijing.aliyuncs.com/tidb/diag`.
     :::info
@@ -159,7 +159,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     kubectl get pods --namespace tidb-admin -l app.kubernetes.io/instance=diag-collector
     ```
 
-    ::: info Note
+    :::info Note
     - The namespace should be set to the same as the TiDB Operator. If the TiDB Operator is not deployed, please deploy the TiDB Operator before deploying the Clinic Diag.
     :::info
 
@@ -182,7 +182,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
         hostPath:
           path: /data/diag
     ```
-    ::: info Note
+    :::info Note
     - Multi-disk mount is not supported
     - Support any type of StorageClass
     :::info
@@ -235,7 +235,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
 
     Other items such as: `limits`, `requests` and`volume `, please modify as needed.
 
-    ::: info Note
+    :::info Note
     - Please refer to the content of [Step 2: Log in to Clinic Server to obtain Clinic Token] (#Step-2-:-log-in-to-clinic-server-to-get-clinic-token) to obtain Token.
     :::info
 
@@ -247,7 +247,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     helm install diag-collector ./diag --namespace=tidb-admin
     ```
 
-    ::: info Note
+    :::info Note
     The namespace should be set to the same as the TiDB Operator. If the TiDB Operator is not deployed, please deploy the TiDB Operator first and then deploy Clinic Diag.
     :::info
 
@@ -270,7 +270,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
         hostPath:
           path: /data/diag
     ```
-    ::: info Note
+    :::info Note
     - Multi-disk mount is not supported
     - Support any type of StorageClass
     :::info
@@ -278,7 +278,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
 </TabItem>
 
 <TabItem value="Least privilege deployment" label="Least privilege deployment" default>
- ::: info Note
+ :::info Note
   - This deployment method deploys Diag to the namespace where the target cluster is located. Diag can only collect data in the namespace, and cannot collect data across namespaces.
   :::info
 
@@ -304,7 +304,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
           --set diag.clinicToken=${clinic_token} \
           --set diag.clusterRoleEnabled=false
     ```
-    ::: info Note
+    :::info Note
     - If the cluster does not have TLS enabled, you can set `diag.tls Enabled = false`, and the Role created at this time will not have`get ` and `list` permissions for `secrets`.
 
       ```shell
@@ -364,7 +364,7 @@ The following scenarios apply to the collection of diagnostic data using Clinic 
 - When there is a problem with the cluster and you want to consult PingCAP technical support, you need to provide cluster diagnostic data to assist technical support for locating the problem.
 - Retain cluster diagnostic data for later analysis.
 
-::: info Note
+:::info Note
 For clusters deployed using TiDB Operator, the collection of diagnostic data such as logs, configuration files, and system hardware information is not currently supported.
 :::info
 
@@ -443,7 +443,7 @@ API return information description:
 - `Id`: The ID number of this task. In subsequent operations, this ID is the only information to locate this task.
 - `Status` The current status of this task, `accepted` means the acquisition task is queued.
 
-::: info Note
+:::info Note
 Returning the command result only means that the data collection task has started, not that the collection has been completed. To know if the acquisition is all complete, you need to check the status of the acquisition task through the next step.
 :::info
 
