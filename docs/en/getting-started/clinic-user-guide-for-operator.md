@@ -409,7 +409,7 @@ API call parameter description:
 - `Collector`: optional parameter, you can configure the data type to be collected, support [monitor, config, perf]. If this parameter is not configured, monitor and config data will be collected by default.
 - `From` and`to `: The start and end times of collection, respectively. `+ 0800`represents the time zone, and the supported time formats are as follows:
 
- {{< copyable "shell-regular" >}}
+
 
   ```bash
   "2006-01-02T15:04:05Z07:00"

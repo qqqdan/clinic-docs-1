@@ -429,7 +429,7 @@ API 调用参数说明：
 - `collector`：可选参数，可配置需要采集的数据类型，支持 [monitor, config, perf]。若不配置该参数，默认采集 monitor 和 config 数据。
 - `from` 和 `to`：分别为采集的起止时间。`+0800` 代表时区，支持的时间格式如下：
 
- {{< copyable "shell-regular" >}}
+
 
   ```bash
   "2006-01-02T15:04:05Z07:00"

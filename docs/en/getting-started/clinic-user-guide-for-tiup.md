@@ -33,7 +33,7 @@ Before using PingCAP Clinic, you need to install Diag (a component to collect da
 
    - If you have installed TiUP on your control machine, run the following command to install Diag:
 
-        {{< copyable "shell-regular" >}}
+
 
         ```bash
         tiup install diag
@@ -41,7 +41,7 @@ Before using PingCAP Clinic, you need to install Diag (a component to collect da
 
     - If you have installed Diag, you can use the following command to upgrade Diag to the latest version:
 
-        {{< copyable "shell-regular" >}}
+
 
         ```bash
         tiup update diag
@@ -68,7 +68,7 @@ Before using PingCAP Clinic, you need to install Diag (a component to collect da
 
     Then, set the token in Diag. For example:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     tiup diag config clinic.token ${token-value}
@@ -94,7 +94,7 @@ With Diag, you can collect data from the TiDB clusters and the DM clusters deplo
 
     For example, to collect the diagnostic data from 4 hours ago to 2 hours ago based on the current time, run the following command:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     tiup diag collect ${cluster-name} -f="-4h" -t="-2h"
@@ -122,7 +122,7 @@ With Diag, you can collect data from the TiDB clusters and the DM clusters deplo
 
     After you run the command, Diag does not start collecting data immediately. Instead, Diag provides the estimated data size and the target data storage path in the output for you to confirm whether to continue. For example:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     Estimated size of data to collect:
@@ -143,7 +143,7 @@ With Diag, you can collect data from the TiDB clusters and the DM clusters deplo
 
     After the collection is complete, Diag provides the folder path where the collected data is located. For example:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     Collected data are stored in /home/qiaodan/diag-fNTnz5MGhr6
@@ -155,7 +155,7 @@ With Diag, you can collect data from the TiDB clusters and the DM clusters deplo
 
     For example, to collect the diagnostic data from 4 hours ago to 2 hours ago based on the current time, run the following command:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     tiup diag collectdm ${cluster-name} -f="-4h" -t="-2h"
@@ -171,7 +171,7 @@ With Diag, you can collect data from the TiDB clusters and the DM clusters deplo
 
     After the collection is complete, Diag provides the folder path where the collected data is located. For example:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     Collected data are stored in /home/qiaodan/diag-fNTnz5MGhr6
@@ -207,7 +207,7 @@ Depending on the network connection of the cluster, you can choose one of the fo
 
 If the network where the cluster is located can access the internet, you can directly upload the folder with collected data obtained in [Step 2: Collect data](#step-2-collect-data) using the following command:
 
-{{< copyable "shell-regular" >}}
+
 
 ```bash
 tiup diag upload
@@ -215,7 +215,7 @@ tiup diag upload
 
 The following is an example output:
 
-{{< copyable "shell-regular" >}}
+
 
 ```bash
 [root@Copy-of-VM-EE-CentOS76-v1 qiaodan]# tiup diag upload /home/qiaodan/diag-fNTnz5MGhr6
@@ -233,7 +233,7 @@ If the network where your cluster is located cannot access the internet, you nee
 
 1. Pack the collected data obtained in [Step 2. Collect data](#step-2-collect-data) by running the following command:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     tiup diag package ${filepath}
@@ -250,7 +250,7 @@ If the network where your cluster is located cannot access the internet, you nee
 
 2. From a machine with internet access, upload the compressed data package:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     tiup diag upload ${filepath}
@@ -258,7 +258,7 @@ If the network where your cluster is located cannot access the internet, you nee
 
     The following is an example output:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     [root@Copy-of-VM-EE-CentOS76-v1 qiaodan]# tiup diag upload /home/qiaodan/diag-fNTnz5MGhr6
@@ -276,7 +276,7 @@ You can have a quick check on the cluster status locally using Diag. Even if you
 
 1. Collect configuration data:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     tiup diag collect ${cluster-name} --include="config"
@@ -286,7 +286,7 @@ You can have a quick check on the cluster status locally using Diag. Even if you
 
 2. Diagnose configuration data:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     tiup diag check ${subdir-in-output-data}
@@ -298,7 +298,7 @@ You can have a quick check on the cluster status locally using Diag. Even if you
 
     The diagnostic result is returned on the command line. For example:
 
-    {{< copyable "shell-regular" >}}
+
 
     ```bash
     Starting component `diag`: /root/.tiup/components/diag/v0.7.0/diag check diag-fNTnz5MGhr6
