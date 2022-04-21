@@ -1,6 +1,6 @@
 ---
-title: 在 Operator 部署环境使用
-summary: 详细介绍在使用 TiDB Operator 部署的集群上如何通过 Clinic Diag 诊断客户端进行数据采集和快速检查。
+sidebar_position: 4
+title: Use PingCAP Clinic For Operator Environment
 ---
 
 import Tabs from '@theme/Tabs';
@@ -35,7 +35,7 @@ Before deploying Clinic Diag, please review the following software requirements:
 * Kubernetes v1.12 or later
 * [TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/tidb-operator-overview)
 * [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
-* [RBAC](https://kubernetes.io/docs/admin/authorization/rbac) 
+* [RBAC](https://kubernetes.io/docs/admin/authorization/rbac)
 * [Helm 3](https://helm.sh)
 
 #### Install Helm
@@ -137,7 +137,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     ```
 
     ::: info Note
-    `${chart_version}` represents the chart version in subsequent docs, such as `v0.7.0`, you can check the currently supported version by 
+    `${chart_version}` represents the chart version in subsequent docs, such as `v0.7.0`, you can check the currently supported version by
     `helm search repo -l diag`.
     :::info
 
@@ -196,7 +196,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
 
     If there is no extranet on the server, the Clinic diag component and other applications cannot be installed through the configuration Helm repo. At this time, you need to download the chart file required for cluster installation on the machine with extranet, and then copy it to the server.
 
-    Download the `Clinic diag `chart file with the following command:  
+    Download the `Clinic diag `chart file with the following command:
 
     ```shell
     wget http://charts.pingcap.org/diag-v0.7.1.tgz
@@ -296,7 +296,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
       tidbclusters.pingcap.com  []                 []              [get list]
       tidbmonitors.pingcap.com  []                 []              [get list]
     ```
-  
+
  2. Deploy Clinic Diag with the following helm command, the latest Diag image will be downloaded from Docker Hub
 
     ```shell
@@ -306,7 +306,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     ```
     ::: info Note
     - If the cluster does not have TLS enabled, you can set `diag.tls Enabled = false`, and the Role created at this time will not have`get ` and `list` permissions for `secrets`.
-    
+
       ```shell
       helm install --namespace tidb-cluster diag-collector pingcap/diag \
             --set diag.clinicToken=${clinic_token} \
@@ -517,7 +517,7 @@ curl -s http://${host}:${port}/api/v1/data/${id}/upload
 }
 ```
 
-If the status changes to`finished `, both packaging and uploading are complete. At this time,` result `means that Clinic Server views the link to this dataset, that is, the data access link that needs to be sent to PingCAP technical support personnel. 
+If the status changes to`finished `, both packaging and uploading are complete. At this time,` result `means that Clinic Server views the link to this dataset, that is, the data access link that needs to be sent to PingCAP technical support personnel.
 
 ### Optional action: View data locally
 
