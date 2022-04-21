@@ -58,7 +58,7 @@ Before using PingCAP Clinic, you need to install Diag (a component to collect da
 
     To get a token, log in to [Clinic Server](https://clinic.pingcap.com.cn) and click the icon in the lower-right corner of the Cluster page. Next, select **Get Access Token For Diag Tool**, click **+** in the pop-up window, and then copy and save the displayed token information.
 
-    ![Get the Token](/img/get-token.png)
+    ![Get the Token](/img/getting-started/get-token.png)
 
     > **Note:**
     >

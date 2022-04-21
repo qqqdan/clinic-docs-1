@@ -35,7 +35,7 @@ PingCAP Clinic 目前处于 Technical Preview 阶段。
 
     点击 Cluster 页面右下角的图标，选择 **Get Access Token For Diag Tool**，在弹出窗口中点击 **+** 符号获取 Token 后，复制并保存 Token 信息。
 
-    ![获取 token 截图](/img/get-token.png)
+    ![获取 token 截图](/img/getting-started/get-token.png)
 
     :::info 注意
     - 为了确保数据的安全性，TiDB 只在创建 Token 时显示 Token 信息。如果丢失了 Token 信息，你可以删除旧 Token 后重新创建。

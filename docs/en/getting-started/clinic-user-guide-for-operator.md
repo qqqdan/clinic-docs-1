@@ -75,7 +75,7 @@ After the user successfully logs in for the first time, an organization needs to
 #### Get client side upload Token
 Click the upload icon on the page, select "Get Access Token For Diag Tool", copy and save the Token information in the pop-up window.
 
- ![Get Token](/img/get-token.png)
+ ![Get Token](/img/getting-started/get-token.png)
 
 :::info Note
 - Token content is only displayed when it is created. If the user loses the Token information, the old Token can be deleted and recreated.
