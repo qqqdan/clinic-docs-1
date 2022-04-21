@@ -294,9 +294,10 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 </TabItem>
 
 <TabItem value="最小权限部署" label="最小权限部署" default>
-  :::info 注意
-  - 本部署方式将 Diag 部署到目标集群所在的 namespace，Diag 只能采集 namespace 中的数据，不能进行跨 namespace 采集数据。
-  :::info
+
+:::info 注意
+- 本部署方式将 Diag 部署到目标集群所在的 namespace，Diag 只能采集 namespace 中的数据，不能进行跨 namespace 采集数据。
+:::info
 
   1. 确认部署用户的权限
 
@@ -320,24 +321,26 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
           --set diag.clusterRoleEnabled=false
     ```
 
-    :::info 注意
-    - 如果集群未开启 TLS ，可以设置 'diag.tlsEnabled=false' ，此时创建的 Role 将不会带有 'secrets' 的 'get' 和 'list' 权限。
+:::info 注意
 
-      ```shell
-      helm install --namespace tidb-cluster diag-collector pingcap/diag \
-            --set diag.clinicToken=${clinic_token} \
-            --set diag.tlsEnabled=false \
-            --set diag.clusterRoleEnabled=false
-      ```
-    - 如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
+- 如果集群未开启 TLS ，可以设置 'diag.tlsEnabled=false' ，此时创建的 Role 将不会带有 'secrets' 的 'get' 和 'list' 权限。
 
-      ```shell
-      helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.0 \
-          --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
-          --set diag.clinicToken= ${clinic_token} \
-          --set diag.clusterRoleEnabled=false
-      ```
-    :::info
+  ```shell
+  helm install --namespace tidb-cluster diag-collector pingcap/diag \
+        --set diag.clinicToken=${clinic_token} \
+        --set diag.tlsEnabled=false \
+        --set diag.clusterRoleEnabled=false
+  ```
+- 如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
+
+  ```shell
+  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.0 \
+      --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
+      --set diag.clinicToken= ${clinic_token} \
+      --set diag.clusterRoleEnabled=false
+  ```
+
+:::info
 
   3. 部署后返回如下：
 
