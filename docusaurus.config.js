@@ -19,6 +19,11 @@ const config = {
   organizationName: "pingcap", // Usually your GitHub org/user name.
   projectName: "clinic-docs", // Usually your repo name.
 
+  i18n: {
+    defaultLocale: process.env.DOCS_LANG,
+    locales: ["en", "zh"],
+  },
+
   presets: [
     [
       "classic",
@@ -60,6 +65,10 @@ const config = {
             position: "left",
             label: "Guide",
           },
+          {
+            type: "localeDropdown",
+            position: "right",
+          },
           // {
           //   href: "https://github.com/facebook/docusaurus",
           //   label: "GitHub",
@@ -79,23 +88,23 @@ const config = {
               },
             ],
           },
-          {
-            title: "Community",
-            items: [
-              // {
-              //   label: "Stack Overflow",
-              //   href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              // },
-              // {
-              //   label: "Discord",
-              //   href: "https://discordapp.com/invite/docusaurus",
-              // },
-              // {
-              //   label: "Twitter",
-              //   href: "https://twitter.com/docusaurus",
-              // },
-            ],
-          },
+          // {
+          //   title: "Community",
+          //   items: [
+          // {
+          //   label: "Stack Overflow",
+          //   href: "https://stackoverflow.com/questions/tagged/docusaurus",
+          // },
+          // {
+          //   label: "Discord",
+          //   href: "https://discordapp.com/invite/docusaurus",
+          // },
+          // {
+          //   label: "Twitter",
+          //   href: "https://twitter.com/docusaurus",
+          // },
+          //   ],
+          // },
           // {
           //   title: "More",
           //   items: [
