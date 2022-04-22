@@ -48,7 +48,6 @@ Clinic Diag 部署前，请确认以下软件需求：
 helm search repo diag
 NAME        	CHART VERSION	APP VERSION	DESCRIPTION                          
 pingcap/diag	v0.7.1       	v0.7.1     	clinic diag Helm chart for Kubernetes
-
 ```
 
 #### 检查部署用户的权限
@@ -108,7 +107,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
     # namespace： 和 TiDB Operator 处于同一 namespace 中
     # diag.clinicToken: 请在 "https://clinic.pingcap.com.cn" 中登录并获取您的 Token。
     helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.1 \
-          --set diag.clinicToken=${clinic_token }
+          --set diag.clinicToken=${clinic_token}
     ```
 
     :::info 注意
@@ -117,7 +116,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
     ```shell
     helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.1 \
          --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
-         --set diag.clinicToken= ${clinic_token }
+         --set diag.clinicToken= ${clinic_token}
     ```
     :::info
 
@@ -333,7 +332,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 - 如果集群未开启 TLS ，可以设置 'diag.tlsEnabled=false' ，此时创建的 Role 将不会带有 'secrets' 的 'get' 和 'list' 权限。
 
   ```shell
-  helm install --namespace tidb-cluster diag-collector pingcap/diag \
+  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.1 \
         --set diag.clinicToken=${clinic_token} \
         --set diag.tlsEnabled=false \
         --set diag.clusterRoleEnabled=false
