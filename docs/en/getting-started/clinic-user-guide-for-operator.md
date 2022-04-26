@@ -40,7 +40,13 @@ Before deploying Clinic Diag, please review the following software requirements:
 
 #### Install Helm
 
-Refer to [Use Helm](https://helm.sh/docs/intro/install/) to install Helm and configure PingCAP official chart repository.
+Refer to [Use Helm](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/tidb-toolkit#%E4%BD%BF%E7%94%A8-helm) to install Helm and configure PingCAP official chart repository.
+
+```shell
+helm search repo diag
+NAME        	CHART VERSION	APP VERSION	DESCRIPTION                          
+pingcap/diag	v0.7.1       	v0.7.1     	clinic diag Helm chart for Kubernetes
+```
 
 #### Check the permissions of the deployment user
 
@@ -96,17 +102,17 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
   1. Deploy Clinic Diag with the following helm command, the latest Diag image will be downloaded from Docker Hub
 
     ```shell
-    helm install --namespace tidb-admin diag-collector pingcap/diag \
-          --set diag.clinicToken=${clinic_token }
+    helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.1 \
+          --set diag.clinicToken=${clinic_token}
     ```
 
     :::info Note
     If accessing Docker Hub is slow, you can use the image on Alibaba Cloud:
 
     ```shell
-    helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.0 \
+    helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.1 \
          --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
-         --set diag.clinicToken= ${clinic_token }
+         --set diag.clinicToken= ${clinic_token}
     ```
     :::info
 
@@ -137,7 +143,7 @@ Depending on the network connectivity of the cluster, you can choose to deploy t
     ```
 
 :::info Note
-`${chart_version}` represents the chart version in subsequent docs, such as `v0.7.0`, you can check the currently supported version by
+`${chart_version}` represents the chart version in subsequent docs, such as `v0.7.1`, you can check the currently supported version by
 `helm search repo -l diag`.
 :::info
 
@@ -303,7 +309,7 @@ The namespace should be set to the same as the TiDB Operator. If the TiDB Operat
  2. Deploy Clinic Diag with the following helm command, the latest Diag image will be downloaded from Docker Hub
 
     ```shell
-    helm install --namespace tidb-cluster diag-collector pingcap/diag \
+    helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.1 \
           --set diag.clinicToken=${clinic_token} \
           --set diag.clusterRoleEnabled=false
     ```
@@ -312,7 +318,7 @@ The namespace should be set to the same as the TiDB Operator. If the TiDB Operat
 - If the cluster does not have TLS enabled, you can set `diag.tls Enabled = false`, and the Role created at this time will not have`get ` and `list` permissions for `secrets`.
 
   ```shell
-  helm install --namespace tidb-cluster diag-collector pingcap/diag \
+  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.1 \
         --set diag.clinicToken=${clinic_token} \
         --set diag.tlsEnabled=false \
         --set diag.clusterRoleEnabled=false
@@ -320,7 +326,7 @@ The namespace should be set to the same as the TiDB Operator. If the TiDB Operat
 - If accessing Docker Hub is slow, you can use the image on Alibaba Cloud:
 
   ```shell
-  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.0 \
+  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.1 \
       --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
       --set diag.clinicToken= ${clinic_token} \
       --set diag.clusterRoleEnabled=false

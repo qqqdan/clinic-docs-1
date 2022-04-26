@@ -42,7 +42,13 @@ Clinic Diag 部署前，请确认以下软件需求：
 
 #### 安装 Helm
 
-参考 [使用 Helm](https://helm.sh/docs/intro/install/) 安装 Helm 并配置 PingCAP 官方 chart 仓库。
+参考 [使用 Helm](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/tidb-toolkit#%E4%BD%BF%E7%94%A8-helm) 安装 Helm 并配置 PingCAP 官方 chart 仓库。
+
+```shell
+helm search repo diag
+NAME        	CHART VERSION	APP VERSION	DESCRIPTION                          
+pingcap/diag	v0.7.1       	v0.7.1     	clinic diag Helm chart for Kubernetes
+```
 
 #### 检查部署用户的权限
 
@@ -100,17 +106,17 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
     ```shell
     # namespace： 和 TiDB Operator 处于同一 namespace 中
     # diag.clinicToken: 请在 "https://clinic.pingcap.com.cn" 中登录并获取您的 Token。
-    helm install --namespace tidb-admin diag-collector pingcap/diag \
-          --set diag.clinicToken=${clinic_token }
+    helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.1 \
+          --set diag.clinicToken=${clinic_token}
     ```
 
     :::info 注意
     如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
 
     ```shell
-    helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.0 \
+    helm install --namespace tidb-admin diag-collector pingcap/diag --version v0.7.1 \
          --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
-         --set diag.clinicToken= ${clinic_token }
+         --set diag.clinicToken= ${clinic_token}
     ```
     :::info
 
@@ -142,7 +148,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 
       :::info 注意
 
-      `${chart_version}` 在后续文档中代表 chart 版本，例如 `v0.7.0`，可以通过 `helm search repo -l diag` 查看当前支持的版本。
+      `${chart_version}` 在后续文档中代表 chart 版本，例如 `v0.7.1`，可以通过 `helm search repo -l diag` 查看当前支持的版本。
       :::info
 
   2. 配置 `values-diag-collector.yaml` 文件
@@ -212,13 +218,13 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       通过以下命令，下载 `Clinic diag` chart 文件：
 
       ```shell
-      wget http://charts.pingcap.org/diag-v0.7.0.tgz
+      wget http://charts.pingcap.org/diag-v0.7.1.tgz
       ```
 
-      将 `diag-v0.7.0.tgz` 文件拷贝到服务器上并解压到当前目录：
+      将 `diag-v0.7.1.tgz` 文件拷贝到服务器上并解压到当前目录：
 
       ```shell
-      tar zxvf diag-v0.7.0.tgz
+      tar zxvf diag-v0.7.1.tgz
       ```
 
   2. 下载 Clinic Diag 运行所需的 Docker 镜像
@@ -228,21 +234,21 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
       TiDB Operator 用到的 Docker 镜像有：
 
       ```shell
-      pingcap/diag:v0.7.0
+      pingcap/diag:v0.7.1
       ```
 
       接下来通过下面的命令将镜像下载下来：
 
       ```shell
-      docker pull pingcap/diag:v0.7.0
+      docker pull pingcap/diag:v0.7.1
 
-      docker save -o diag-v0.7.0.tar pingcap/diag:v0.7.0
+      docker save -o diag-v0.7.1.tar pingcap/diag:v0.7.1
       ```
 
       接下来将这些 Docker 镜像上传到服务器上，并执行 `docker load` 将这些 Docker 镜像安装到服务器上：
 
       ```shell
-      docker load -i diag-v0.7.0.tar
+      docker load -i diag-v0.7.1.tar
       ```
 
   3. 配置 Clinic Diag
@@ -316,7 +322,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
   2. 通过如下 helm 命令部署 Clinic Diag，将从 Docker Hub 下载最新 Diag 镜像
 
     ```shell
-    helm install --namespace tidb-cluster diag-collector pingcap/diag \
+    helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.1 \
           --set diag.clinicToken=${clinic_token} \
           --set diag.clusterRoleEnabled=false
     ```
@@ -326,7 +332,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 - 如果集群未开启 TLS ，可以设置 'diag.tlsEnabled=false' ，此时创建的 Role 将不会带有 'secrets' 的 'get' 和 'list' 权限。
 
   ```shell
-  helm install --namespace tidb-cluster diag-collector pingcap/diag \
+  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.1 \
         --set diag.clinicToken=${clinic_token} \
         --set diag.tlsEnabled=false \
         --set diag.clusterRoleEnabled=false
@@ -334,7 +340,7 @@ Clinic Token 用于 Diag 客户端上传数据时的用户认证，保证数据�
 - 如果访问 Docker Hub 网速较慢，可以使用阿里云上的镜像：
 
   ```shell
-  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.0 \
+  helm install --namespace tidb-cluster diag-collector pingcap/diag --version v0.7.1 \
       --set image.diagImage=registry.cn-beijing.aliyuncs.com/tidb/diag \
       --set diag.clinicToken= ${clinic_token} \
       --set diag.clusterRoleEnabled=false
