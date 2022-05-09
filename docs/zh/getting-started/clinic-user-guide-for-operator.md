@@ -52,21 +52,53 @@ pingcap/diag	v0.7.1       	v0.7.1     	clinic diag Helm chart for Kubernetes
 
 #### 检查部署用户的权限
 
-Diag 部署过程中，需要创建具备以下权限的 *Role* 和 *Cluster Role* ，需要部署 Diag 所使用的用户有创建该类型 *Role* 和 *Cluster Role* 的权限。
-
+部署 Diag 所使用的用户需要具备创建以下类型 *Role* 和 *Cluster Role* 的权限：
+*Role* 权限：
 ```
 PolicyRule:
-  Resources                 Non-Resource URLs  Resource Names  Verbs
-  ---------                 -----------------  --------------  -----
-  pods                      []                 []              [get list]
-  secrets                   []                 []              [get list]
-  services                  []                 []              [get list]
-  tidbclusters.pingcap.com  []                 []              [get list]
-  tidbmonitors.pingcap.com  []                 []              [get list]
+  Resources                               Non-Resource URLs  Resource Names  Verbs
+  ---------                               -----------------  --------------  -----
+  serviceaccounts                         []                 []              [get create delete]
+  deployments.apps                        []                 []              [get create delete]
+  rolebindings.rbac.authorization.k8s.io  []                 []              [get create delete]
+  roles.rbac.authorization.k8s.io         []                 []              [get create delete]
+  secrets                                 []                 []              [get list create delete]
+  services                                []                 []              [get list create delete]
+  pods                                    []                 []              [get list]
+  tidbclusters.pingcap.com                []                 []              [get list]
+  tidbmonitors.pingcap.com                []                 []              [get list]
 ```
+
+*Cluster Role* 权限：
+```
+PolicyRule:
+  Resources                                      Non-Resource URLs  Resource Names  Verbs
+  ---------                                      -----------------  --------------  -----
+  clusterrolebindings.rbac.authorization.k8s.io  []                 []              [get create delete]
+  clusterroles.rbac.authorization.k8s.io         []                 []              [get create delete]
+  pods                                           []                 []              [get list]
+  secrets                                        []                 []              [get list]
+  services                                       []                 []              [get list]
+  tidbclusters.pingcap.com                       []                 []              [get list]
+  tidbmonitors.pingcap.com                       []                 []              [get list]
+```
+
 :::info 注意
 - 如果集群情况可以满足最小权限部署的条件，可以使用更小的权限。详情见[最小权限部署](#第 3 步：部署 Clinic Diag Pod)。
 :::info
+
+可以通过以下步骤检查部署用户的权限：
+（1）查看部署用户绑定的 Role 角色 和 clusterRole 角色：
+```shell
+kubectl describe rolebinding -n ${namespace} | grep ${user_name} -A 7
+kubectl describe clusterrolebinding -n ${namespace} | grep ${user_name} -A 7
+```
+
+（2）查看对应角色具有的权限：
+```shell
+kubectl describe role ${role_name} -n ${namespace}
+kubectl describe clusterrole ${clusterrole_name} -n ${namespace}
+```
 
 ### 第 2 步：登录 Clinic Server 获取 Clinic Token
 

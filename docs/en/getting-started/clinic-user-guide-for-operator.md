@@ -50,21 +50,53 @@ pingcap/diag	v0.7.1       	v0.7.1     	clinic diag Helm chart for Kubernetes
 
 #### Check the permissions of the deployment user
 
-During the Diag deployment process, you need to create *Role* and *Cluster Role* with the following permissions. The user who needs to deploy Diag should have permission to create this type of *Role* and *Cluster Role*.
+During the Diag deployment process, you need to create *Role* and *ClusterRole* with the following permissions. The user who needs to deploy Diag should have permission to create this type of *Role* and *Cluster Role*.
 
+*Role* permissions：
 ```
 PolicyRule:
-  Resources                 Non-Resource URLs  Resource Names  Verbs
-  ---------                 -----------------  --------------  -----
-  pods                      []                 []              [get list]
-  secrets                   []                 []              [get list]
-  services                  []                 []              [get list]
-  tidbclusters.pingcap.com  []                 []              [get list]
-  tidbmonitors.pingcap.com  []                 []              [get list]
+  Resources                               Non-Resource URLs  Resource Names  Verbs
+  ---------                               -----------------  --------------  -----
+  serviceaccounts                         []                 []              [get create delete]
+  deployments.apps                        []                 []              [get create delete]
+  rolebindings.rbac.authorization.k8s.io  []                 []              [get create delete]
+  roles.rbac.authorization.k8s.io         []                 []              [get create delete]
+  secrets                                 []                 []              [get list create delete]
+  services                                []                 []              [get list create delete]
+  pods                                    []                 []              [get list]
+  tidbclusters.pingcap.com                []                 []              [get list]
+  tidbmonitors.pingcap.com                []                 []              [get list]
+```
+
+*Cluster Role* permissions：
+```
+PolicyRule:
+  Resources                                      Non-Resource URLs  Resource Names  Verbs
+  ---------                                      -----------------  --------------  -----
+  clusterrolebindings.rbac.authorization.k8s.io  []                 []              [get create delete]
+  clusterroles.rbac.authorization.k8s.io         []                 []              [get create delete]
+  pods                                           []                 []              [get list]
+  secrets                                        []                 []              [get list]
+  services                                       []                 []              [get list]
+  tidbclusters.pingcap.com                       []                 []              [get list]
+  tidbmonitors.pingcap.com                       []                 []              [get list]
 ```
 :::info Note
 - Smaller permissions can be used if the cluster situation qualifies for least privilege deployment. See [Least Privilege Deployment](#step-3-:-deploy-the-clinic-diag-pod) for details.
 :::info
+
+The permissions of the deployment user can be checked with the following steps:
+（1）View the *Role* and *clusterRole* roles bound to the deployment user:
+```shell
+kubectl describe rolebinding -n ${namespace} | grep ${user_name} -A 7
+kubectl describe clusterrolebinding -n ${namespace} | grep ${user_name} -A 7
+```
+
+（2）View the permissions of the corresponding roles：
+```shell
+kubectl describe role ${role_name} -n ${namespace}
+kubectl describe clusterrole ${clusterrole_name} -n ${namespace}
+```
 
 ### Step 2: Log in to Clinic Server to get Clinic Token
 
