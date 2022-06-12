@@ -25,14 +25,12 @@ PingCAP strictly controls permissions for data access and only allows authorized
 | Data type | Exported file | Parameter for data collection by PingCAP Clinic |
 | :------ | :------ |:-------- |
 | Real-time configuration | `config.json` | `collectors:config` |
-| Performance data | `cpu_profile.proto`, `mem_heap.proto`, `goroutine.txt`, `mutex.txt` | `collectors:perf` |
 
 ### TiKV diagnostic data
 
 | Data type | Exported file | Parameter for data collection by PingCAP Clinic |
 | :------ | :------ |:-------- |
 | Real-time configuration | `config.json` |  `collectors:config` |
-| Performance data | `cpu_profile.proto` | `collectors:perf` |
 
 ### PD diagnostic data
 
@@ -41,20 +39,17 @@ PingCAP strictly controls permissions for data access and only allows authorized
 | Real-time configuration | `config.json` | `collectors:config`|
 | Outputs of the command `tiup ctl pd -u http://${pd IP}:${PORT} store` | `store.json` | `collectors:config` |
 | Outputs of the command `tiup ctl pd -u http://${pd IP}:${PORT} config placement-rules show` | `placement-rule.json` |`collectors:config` |
-| Performance data | `cpu_profile.proto`, `mem_heap.proto`, `goroutine.txt`, `mutex.txt` | `collectors:perf`  |
 
 ### TiFlash diagnostic data
 
 | Data type | Exported file | Parameter for data collection by PingCAP Clinic |
 | :------ | :------ |:-------- |
 | Real-time configuration | `config.json` | `collectors:config` |
-| Performance data | `cpu_profile.proto` | `collectors:perf` |
 
 ### TiCDC diagnostic data
 
 | Data type | Exported file | Parameter for data collection by PingCAP Clinic |
 | :------ | :------ |:-------- |
-| Performance data | `cpu_profile.proto`, `mem_heap.proto`, `goroutine.txt`, `mutex.txt` | `collectors:perf` |
 | Debug data | `info.txt`, `status.txt`, `changefeeds.txt`, `captures.txt`, `processors.txt` | `collectors:debug` |
 
 ### Prometheus monitoring data

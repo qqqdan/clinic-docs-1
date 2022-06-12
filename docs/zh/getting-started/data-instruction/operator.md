@@ -23,14 +23,12 @@ Clinic Server 中国区（clinic.pingcap.com.cn）是部署在云端的云服务
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
 | 实时配置 | `config.json` | `collectors:config` |
-| 性能数据| `cpu_profile.proto`, `mem_heap.proto`,`goroutine.txt`,`mutex.txt` | `collectors:perf` |
 
 ### TiKV 诊断数据
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
 | 实时配置 | `config.json` | `collectors:config` |
-| 性能数据| `cpu_profile.proto` | `collectors:perf` |
 
 ### PD 诊断数据
 
@@ -39,14 +37,12 @@ Clinic Server 中国区（clinic.pingcap.com.cn）是部署在云端的云服务
 | 实时配置 | `config.json` |`collectors:config` |
 | `tiup ctl pd -u http://${pd IP}:${PORT} store` 的输出结果 | `store.json` | `collectors:config` |
 | `tiup ctl pd -u http://${pd IP}:${PORT} config placement-rules show` 的输出结果 | `placement-rule.json` | `collectors:config` |
-| 性能数据| `cpu_profile.proto`, `mem_heap.proto`,`goroutine.txt`,`mutex.txt` | `collectors:perf` |
 
 ### TiFlash 诊断数据
 
 |诊断数据类型 | 输出文件 | Clinic 采集参数 |
 | :------ | :------ |:-------- |
 | 实时配置 | `config.json` |`collectors:config` |
-| 性能数据| `cpu_profile.proto` | `collectors:perf` |
 
 ### TiCDC 诊断数据
 
