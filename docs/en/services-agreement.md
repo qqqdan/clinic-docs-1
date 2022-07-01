@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: PingCAP Clinic 服务协议
+title: PingCAP Clinic Service Agreement
 ---
 
 # PingCAP Clinic Service Agreement
