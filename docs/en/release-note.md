@@ -3,6 +3,19 @@ sidebar_position: 2
 title: PingCAP Clinic Release Note
 ---
 
+## v0.9.0
+
+Release Date: July 11, 2022
+**Clinic Service**
+
+- [Added] [Clinic.us](https://clinic.pingcap.com/) is ready for SSO login with TiDB Cloud account.
+- [Fixed] The rebuild process shows 0% in some special case.
+
+**Diag**
+
+- [Added] Support the region configuration for [Clinic.us](https://clinic.pingcap.com/) and [Clinic.cn](https://clinic.pingcap.com.cn/).
+- [Fixed] Fix the data collection issue for old version prometheus server.
+
 ## v0.8.2
 
 Release Date: June 28, 2022
