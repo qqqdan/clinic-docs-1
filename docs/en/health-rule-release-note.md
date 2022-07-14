@@ -3,9 +3,9 @@ sidebar_position: 3
 title: PingCAP Clinic Health Rule Release Note
 ---
 
-## v0.9.0
+## v1.0.0
 
-Release Date: July 11, 2022
+Release Date: July 13, 2022
 
 **Metrics Checking Rule**
 
@@ -34,14 +34,12 @@ Release Date: July 11, 2022
 - [Added] The memory of TiDB nodes are imbalance
 - [Added] PD schedulers are abnormal
 - [Added] Too many heartbeat messages
-- [Added] ## Get-token action is slow in TiDB
-- [Added] ## Parsing query string action is slow in TiDB
-- [Added] ## TiDB compile query statement slowly
-- [Added] ## TiDB waits tso from pd slowly
+- [Added] Get-token is slow in TiDB
+- [Added] Parsing query string is slow in TiDB
+- [Added] Compiling query statement is slow in TiDB
+- [Added] TiDB takes a long time to wait for tso
 - [Added] tso rpc duration is high
 - [Added] Pessimistic lock wait time is too long
-- [Added] ## Raft propose wait duration
-- [Added] ## There are too many MVCC versions
+- [Added] The wait duration of raft propose is high
+- [Added] There are too many MVCC versions
 - [Added] TiDB coprocessor duration is high
-
-
