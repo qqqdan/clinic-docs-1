@@ -6,6 +6,7 @@ title: PingCAP Clinic Release Note
 ## v0.9.0
 
 Release Date: July 11, 2022
+
 **Clinic Service**
 
 - [Added] [Clinic.us](https://clinic.pingcap.com/) is ready for SSO login with TiDB Cloud account.
