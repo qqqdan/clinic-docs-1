@@ -5,7 +5,7 @@ title: PingCAP Clinic Health Rule Release Note
 
 ## v1.0.0
 
-Release Date: July 13, 2022
+Release Date: July 15, 2022
 
 **Metrics Checking Rule**
 
@@ -43,3 +43,31 @@ Release Date: July 13, 2022
 - [Added] The wait duration of raft propose is high
 - [Added] Too many MVCC versions
 - [Added] TiDB coprocessor duration is high
+
+**Log Checking Rule**
+
+- [Added] Writing conflict in optimistic transactions
+- [Added] GC life time is shorter than transaction duration
+- [Added] Transaction not commit for a long time
+- [Added] Data index may be inconsistent
+- [Added] Writing conflict in optimistic transactions
+- [Added] RocksDB write stall
+- [Added] TiKV can't bootstrap since region error 
+- [Added] Tasks pile up in the scheduler
+- [Added] Pump has insufficient disk space
+- [Added] Pump fails to notify all living drainer
+- [Added] DM sync error with incorrect utf8 value
+- [Added] Lightning checksum error
+- [Added] Timestamp error on tidb lightning
+- [Added] Lightning can't guess encoding for input file
+- [Added] Opened engine files exceed the limit of tikv-importer
+- [Added] Metadata is written too frequently for TiCDC
+- [Added] CDC sync interrupted since buffer limit
+- [Added] Canal requires old value to be enabled
+- [Added] Creating changefeed failed
+- [Added] Requests to TiKV coprocessor queued more than 60s
+- [Added] TiDB send request timeout
+- [Added] TiKV response timeout
+- [Added] TiKV peer is not leader
+- [Added] DM sync abnormal
+- [Added] DM sync interrupted

@@ -9,10 +9,11 @@ Release Date: July 15, 2022
 
 **Clinic Service**
 
-- [Added] Provide Health report for each diagnosis data package. 
+- [Added] Provide Health report for each diagnosis data package. It can quickly check metrics and log with 58 rules,details in [health rule release note](https://clinic-docs-en.vercel.app/docs/health-rule-release-note)
 
 **Diag**
 
+- [Added] Add cluster name into the default name of the collected data folder.
 - [Fixed] Fixed Diag config result display issue .
 
 ## v0.9.0
