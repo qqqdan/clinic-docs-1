@@ -3,6 +3,18 @@ sidebar_position: 2
 title: PingCAP Clinic Release Note
 ---
 
+## v1.0.0 - GA
+
+Release Date: July 15, 2022
+
+**Clinic Service**
+
+- [Added] Provide Health report for each diagnosis data package. 
+
+**Diag**
+
+- [Fixed] Fixed Diag config result display issue .
+
 ## v0.9.0
 
 Release Date: July 11, 2022
