@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: PingCAP Clinic Release Note
 ---
-## August 4, 2022 - GA
+## August 4, 2022 
 
 **Clinic Service**
 
