@@ -2,6 +2,22 @@
 sidebar_position: 2
 title: PingCAP Clinic Release Note
 ---
+## September 21 , 2022 
+
+**Diag v1.1.0**
+
+- [Added] Allow collect metrics without PD on utils，you can see details by running this command "tiup diag util metricdump -h" . 
+- [Added] Allow collect metrics without compress with "--compress-metrics=false".
+- [Fixed] Fix wrong meta limit on packager.
+- [Fixed] Fix KB links on checker.
+
+## September 19, 2022 
+
+**Clinic Service**
+
+- [Added] Provide Benchmark Report which can do a quick health check for a cluster, details see [How to use Clinic Reports?](https://docs.pingcap.com/zh/tidb/stable/clinic-report).
+
+
 ## August 4, 2022 
 
 **Clinic Service**
