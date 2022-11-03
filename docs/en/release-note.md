@@ -2,6 +2,13 @@
 sidebar_position: 2
 title: PingCAP Clinic Release Note
 ---
+## November 1 , 2022 
+
+**Diag v1.2.0**
+
+- [Added] Support the metrics filter for operator deployment
+- [Fixed] Fix the Check issue for TiDB v6.2.
+
 ## September 21 , 2022 
 
 **Diag v1.1.0**
